@@ -5,5 +5,7 @@ Clase CoderHouse - Desafíos para entregar
 
 <ul>
   <li>Carpeta con nombre del desafio</li>
-    <ul>Contenido del desafio para entregar</ul>
+    <ul>
+      <li>Contenido del desafio para entregar</li>
+    </ul>
 </ul>
