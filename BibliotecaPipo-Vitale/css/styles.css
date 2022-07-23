@@ -1,0 +1,516 @@
+@charset "UTF-8";
+/*---Colores---*/
+/*---Media---*/
+/*---Map---*/
+/*---Mixins---*/
+/*-----------------header, footer y body-----------------*/
+.logo {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 0 40px;
+  line-height: 80px;
+  text-decoration: none;
+  color: #f0f8ff; }
+
+header {
+  background-color: #543b32;
+  height: auto;
+  width: 100%;
+  top: 0;
+  left: 0; }
+
+main {
+  margin-bottom: 25px; }
+
+footer {
+  width: 100%;
+  padding: 20px 0px;
+  background-color: #543b32;
+  margin-top: auto; }
+
+.container__footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1350px;
+  margin: auto; }
+  .container__footer .box__footer {
+    display: flex;
+    flex-direction: column;
+    padding: 40px; }
+    .container__footer .box__footer .terms {
+      max-width: 350px;
+      margin-top: 20px;
+      font-weight: 500;
+      color: #7a7a7a;
+      font-size: 18px; }
+    .container__footer .box__footer h2 {
+      margin-bottom: 30px;
+      color: #f0f8ff;
+      font-weight: 700;
+      text-align: center; }
+    .container__footer .box__footer a {
+      margin-top: 10px;
+      color: #7a7a7a;
+      font-weight: 600;
+      text-decoration: none; }
+
+.box__copyright {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+  padding: 0px 40px; }
+  .box__copyright p {
+    margin-top: 20px;
+    color: #7a7a7a; }
+  .box__copyright hr {
+    border: none;
+    height: 1px;
+    background-color: #7a7a7a; }
+
+.box__footer a:hover {
+  opacity: 0.8; }
+
+body {
+  font-family: roboto, Arial, sans-serif;
+  background: linear-gradient(to right, #d7ccc8, #f5f5f5);
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; }
+
+.image-body {
+  background-image: url(../img/PipoLogo.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed; }
+
+/*-----------------Sección NAV-----------------*/
+.home_nav {
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important; }
+  .home_nav .home_logo {
+    font-size: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: bold;
+    text-decoration: none;
+    color: #f0f8ff;
+    padding-left: 10px;
+    text-transform: uppercase; }
+  .home_nav li {
+    display: flex;
+    font-size: 20px;
+    font-size: 700;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0px 10px;
+    text-transform: uppercase;
+    color: #f0f8ff; }
+  .home_nav .home_nav-link {
+    padding: 8px 8px;
+    border-radius: 3px;
+    text-decoration: none;
+    color: #f0f8ff; }
+  .home_nav ul {
+    list-style: none;
+    justify-content: center; }
+  .home_nav .home_logo:hover {
+    color: #f0f8ff; }
+  .home_nav .home_nav-link:hover {
+    background-color: #3c2a24;
+    color: #f0f8ff; }
+  .home_nav .home_nav-link:focus {
+    color: #f0f8ff; }
+
+/*-----------------Home-----------------*/
+.home_logo-image {
+  background-image: url(../img/PipoLogo.jpg);
+  background-position: center;
+  background-size: cover;
+  height: 350px; }
+
+.home_about {
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  grid-template-columns: 550px;
+  grid-template-rows: min-content fit-content; }
+  .home_about .home_subtittle {
+    font-size: 30px;
+    font-weight: bold; }
+
+.home_books {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center; }
+
+.home_galery-books {
+  justify-content: center;
+  max-width: 800px;
+  padding: 1rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 320px);
+  grid-template-rows: repeat(2, 450px);
+  gap: 1rem; }
+  .home_galery-books img {
+    object-fit: cover;
+    height: 100%;
+    border-radius: 10px; }
+
+.libro1 {
+  background-image: url("https://api.lorem.space/image/book?w=320&h=450&hash=8B7BCDC2");
+  background-size: cover; }
+
+.libro2 {
+  background-image: url("https://api.lorem.space/image/book?w=320&h=450&hash=A89D0DE6");
+  background-size: cover; }
+
+.libro3 {
+  background-image: url("https://api.lorem.space/image/book?w=320&h=450&hash=225E6693");
+  background-size: cover; }
+
+.libro4 {
+  background-image: url("https://api.lorem.space/image/book?w=320&h=450&hash=9D9539E7");
+  background-size: cover; }
+
+.libro5 {
+  background-image: url("https://api.lorem.space/image/book?w=320&h=450&hash=BDC01094");
+  background-size: cover; }
+
+.libro6 {
+  background-image: url("https://api.lorem.space/image/book?w=320&h=450&hash=7F5AE56A");
+  background-size: cover; }
+
+.libro7 {
+  background-image: url("https://api.lorem.space/image/book?w=320&h=450&hash=4F32C4CF");
+  background-size: cover; }
+
+.libro8 {
+  background-image: url("https://api.lorem.space/image/book?w=150&h=220&hash=2D297A22");
+  background-size: cover; }
+
+/*-----------------Estilo de formulario Universal-----------------*/
+.form_style-main {
+  padding: 20px;
+  border-style: hidden;
+  border-color: #7f98ac99;
+  border-radius: 15px;
+  height: max-content;
+  width: max-content;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
+  background-color: #7f98ac99; }
+  .form_style-main .form_style-tittle {
+    text-align: center;
+    padding-bottom: 10px;
+    font-size: x-large;
+    font-weight: 600;
+    color: #f5f5f5; }
+  .form_style-main .form_style {
+    position: flex;
+    justify-content: center; }
+    .form_style-main .form_style label {
+      display: flex;
+      justify-content: center;
+      padding-top: 18px;
+      margin-bottom: 5px;
+      color: #e3e0e0; }
+    .form_style-main .form_style .form-style-input-button {
+      border-color: transparent;
+      text-align: center;
+      background-color: transparent;
+      border-bottom: 2px solid gray;
+      outline: 0;
+      font-size: 1rem;
+      padding: 7px 0;
+      background: transparent;
+      transition: all 600ms; }
+    .form_style-main .form_style .form_style-input {
+      display: flex;
+      justify-content: center; }
+  .form_style-main .form_style input::placeholder {
+    color: #a4a1a1; }
+  .form_style-main .form_style input:focus {
+    color: #292929;
+    border-bottom: 2px solid #292929; }
+
+/*-----------------Estilo botón universal-----------------*/
+.form_button, .form_button-login {
+  display: flex;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  color: #fff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  background-color: transparent;
+  border-width: 3px;
+  border-style: solid;
+  border-color: #fff;
+  transition: all 700ms; }
+
+.form_button:hover, .form_button-login:hover {
+  background-color: #fff;
+  color: #7f98ac !important; }
+
+.form_button-login {
+  text-transform: uppercase; }
+
+/*-----------------Sección Consulta universal-----------------*/
+.consulta_style-search {
+  display: flex;
+  justify-content: center;
+  padding: 10px; }
+  .consulta_style-search input {
+    width: 300px;
+    height: 50px;
+    background: #7a5446;
+    border-style: solid;
+    border-color: #5f4136;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+    transition: all 700ms; }
+  .consulta_style-search input:hover {
+    background: #d7ccc8;
+    border-color: #3c2a24; }
+  .consulta_style-search ::placeholder {
+    color: #e3e0e0;
+    text-align: center; }
+  .consulta_style-search :hover::placeholder {
+    color: #292929; }
+
+.consulta_style {
+  color: aliceblue;
+  text-align: center;
+  padding: 20px 0px;
+  font-size: x-large;
+  font-weight: 600; }
+
+.consulta_style-orden {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-row-gap: 25px;
+  grid-column-gap: 25px; }
+  .consulta_style-orden .consulta_style-fieldset {
+    display: grid;
+    grid-template-columns: 150px 300px;
+    justify-content: stretch;
+    grid-row-gap: 50px;
+    grid-column-gap: 20px;
+    border-style: solid;
+    border-radius: 15px;
+    background-color: rgba(127, 152, 172, 0.6);
+    border-color: #586a78;
+    padding: 15px; }
+
+.consulta_style_fieldset-libro {
+  display: grid;
+  grid-template-columns: 150px 300px;
+  justify-content: stretch;
+  grid-row-gap: 50px;
+  grid-column-gap: 20px;
+  border-style: solid;
+  border-radius: 15px;
+  background-color: rgba(127, 152, 172, 0.6);
+  border-color: #586a78;
+  padding: 15px;
+  width: fit-content; }
+
+.consulta_style_fieldset-centrado {
+  display: flex;
+  justify-content: center; }
+
+/*-----------------Sección MediaQuerie-----------------*/
+@media (max-width: 1440px) {
+  .consulta_style-orden {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-row-gap: 25px;
+    grid-column-gap: 25px; }
+  .home_galery-books {
+    justify-content: center;
+    max-width: 800px;
+    padding: 1rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 320px);
+    grid-template-rows: repeat(4, 450px);
+    gap: 1rem; } }
+
+@media (max-width: 1024px) {
+  .home_nav li {
+    display: flex;
+    font-size: 15px;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0px 10px;
+    text-transform: uppercase;
+    color: aliceblue; }
+  .home_logo {
+    font-size: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: bold;
+    text-decoration: none;
+    color: aliceblue;
+    padding-left: 10px;
+    text-transform: uppercase; } }
+
+@media (max-width: 768px) {
+  .consulta_style-orden {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-row-gap: 25px;
+    grid-column-gap: 25px; }
+  .home_logo {
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    padding: 0 20px;
+    line-height: 80px;
+    text-decoration: none;
+    color: aliceblue;
+    text-transform: uppercase; }
+  header {
+    background-color: #543b32;
+    height: max-content;
+    padding-bottom: auto;
+    width: 100%;
+    top: 0;
+    left: 0; }
+  body {
+    font-family: roboto, Arial, sans-serif;
+    background: linear-gradient(to right, #d7ccc8, #f5f5f5); }
+  .home_galery-books {
+    justify-content: center;
+    max-width: 800px;
+    padding: 1rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 320px);
+    grid-template-rows: repeat(4, 450px);
+    gap: 1rem; }
+  .dropdown-menu[data-bs-popper] {
+    top: 100%;
+    left: auto !important;
+    margin-top: 0.125rem; }
+  .home_nav li {
+    display: flex;
+    font-size: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 10px;
+    text-transform: uppercase; }
+  .navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important; }
+  .navbar-light .navbar-toggler {
+    border: 1px solid white !important; }
+  .container__footer {
+    justify-content: center; }
+    .container__footer .box__footer {
+      padding: 72px; } }
+
+@media (max-width: 480px) {
+  .consulta_style-orden {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-row-gap: 25px;
+    grid-column-gap: 25px; }
+    .consulta_style-orden .consulta_style-fieldset {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      margin: 0;
+      justify-content: stretch;
+      grid-row-gap: 50px;
+      grid-column-gap: 20px;
+      border-style: solid;
+      border-color: #586a78;
+      padding: 15px; }
+  .home_nav {
+    display: grid;
+    flex-direction: row;
+    justify-content: space-between;
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr 150px; }
+    .home_nav ul {
+      list-style: none;
+      flex-wrap: wrap;
+      justify-content: space-between; }
+    .home_nav li {
+      display: flex;
+      font-size: 15px;
+      justify-content: center;
+      align-items: center;
+      margin: 0px 10px;
+      text-transform: uppercase; }
+    .home_nav .home_logo {
+      font-size: 25px;
+      display: flex;
+      justify-content: center;
+      font-weight: bold;
+      padding: 0 15px;
+      line-height: 80px;
+      text-decoration: none;
+      color: aliceblue;
+      text-transform: uppercase; }
+  header {
+    background-color: #543b32;
+    height: fit-content;
+    width: 100%;
+    top: 0;
+    left: 0; }
+  body {
+    font-family: roboto, Arial, sans-serif;
+    background: linear-gradient(to right, #d7ccc8, #f5f5f5); }
+  .home_galery-books {
+    justify-content: center;
+    max-width: 800px;
+    padding: 1rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(1, 320px);
+    grid-template-rows: repeat(5, 450px);
+    gap: 1rem; }
+  .home_about {
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    grid-template-columns: 250px;
+    grid-template-rows: min-content fit-content; }
+  .navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important; }
+  .navbar-light .navbar-toggler {
+    border: 1px solid white !important; }
+  .form_style-main {
+    height: min-content;
+    width: min-content; }
+  .container__footer {
+    justify-content: center;
+    align-items: center; }
+    .container__footer .box__footer {
+      text-align: center;
+      padding: 16px; } }
