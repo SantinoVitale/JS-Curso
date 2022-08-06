@@ -1,5 +1,5 @@
 class Libro{ // Creacion de la clase Libro
-    constructor(id, titulo, autor, editorial, isbn, sinopsis, img, pasillo, estanteria, estado) {
+    constructor(id, titulo, autor, editorial, isbn, sinopsis, img, pasillo, estanteria) {
         this.id = id
         this.titulo = titulo
         this.autor = autor
@@ -20,20 +20,20 @@ const Libros = [
 
 const button = document.querySelector(".form_button");
 
-let id = 2
-let titulo = document.getElementById("titulo").value
-let autor = document.getElementById("autor").value
-let editorial = document.getElementById("editorial").value
-let isbn = document.getElementById("isbn").value
-let sinopsis = document.getElementById("sinopsis").value
-let img = document.getElementById("img").value
-let pasillo = document.getElementById("pasillo").value
-let estanteria = document.getElementById("estanteria").value
 
-const agregarLibro = () => {
+
+let agregarLibro = () => {
+    let id = 2
+    let titulo = document.getElementById("titulo").value
+    let autor = document.getElementById("autor").value
+    let editorial = document.getElementById("editorial").value
+    let isbn = document.getElementById("isbn").value
+    let sinopsis = document.getElementById("sinopsis").value
+    let img = document.getElementById("img").value
+    let pasillo = document.getElementById("pasillo").value
+    let estanteria = document.getElementById("estanteria").value
     Libros.push(new Libro(id++, titulo, autor, editorial, isbn, sinopsis, img, pasillo, estanteria))
     console.log(Libros)
-    alert("Espere un momento porfa")
 }
 
 button.addEventListener("click", (e) => {

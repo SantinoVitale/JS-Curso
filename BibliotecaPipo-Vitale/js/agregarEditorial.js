@@ -8,7 +8,19 @@ class Editorial{ // Creacion de la clase Editorial
 const Editoriales = [
     {id: "0", nombre: "Océano Historias gráficas"},
     {id: "1", nombre: "Collins Crime Club+ "}
-] // Creación del Array
-Editoriales.push(new Editorial("2", prompt("Ingrese Nombre"))) // Pregunta al usuario los datos para cargar una nueva editorial
+] 
+const button = document.querySelector(".form_button");
 
-console.log(Editoriales)
+
+
+let agregarEditorial = () => {
+    let id = 2
+    let nombre = document.getElementById("nombre").value
+    Editoriales.push(new Editorial(id++, nombre))
+    console.log(Editoriales)
+}
+
+button.addEventListener("click", (e) => {
+    e.preventDefault();
+    agregarEditorial();
+});
