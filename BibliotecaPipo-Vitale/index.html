@@ -31,16 +31,17 @@
             Ingrese los siguientes datos
         </div>
         <div class="form_style">
-            <form>
+            <form action="#">
                 <label for="usuario">Usuario</label>
                 <div class="form_style-input">
-                    <input class="form_style-input-button" type="text" name="usuario">
+                    <input id="usuario" class="form_style-input-button" type="text" name="usuario">
                 </div>
                 <label for="password">Contraseña</label>
                 <div class="form_style-input">
-                    <input class="form_style-input-button" type="password" name="password">
+                    <input id="password" class="form_style-input-button" type="password" name="password">
                 </div>
-                <a href="./pages/home.html" class="form_button-login">Ingresar</a>
+                <button class="form_button" onclick="login()">INGRESAR</button>
+                <div id="error" ></div>
             </form>
     </main>
     <footer>

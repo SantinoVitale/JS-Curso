@@ -1,17 +1,11 @@
-function login(usuario, password){
-    
-    while(usuario != "Santino" && password != "Vitale"){
-        usuario = prompt("Ingrese usuario")
-        password = prompt("Ingrese contraseña")
-        if (usuario == "Santino" && password == "Vitale"){
-            alert ("Se logueó correctamente, puede ingresar!")
-        } else {
-            alert("No se logueó correctamente, verifique nombre y apellido")
-        }
+function login(){
+    let usuario = document.getElementById("usuario").value;
+    let password = document.getElementById("password").value;
+    let errorLogin = document.getElementById("error")
+
+    if(usuario == "Santino" && password == "Vitale"){
+        location.href  = "../pages/home.html";
+    } else {
+        errorLogin.innerHTML = "<h6 style='color: red;'>ERROR! Usuario o contraseña ingresados incorrectamente</h6>"
     }
-    
 }
-
-login("", "")
-
-
