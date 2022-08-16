@@ -1,4 +1,6 @@
 // Libros
+export var fecha = new Date()
+export var fechaDevolucion = (fecha.getDate() + "/" + +(fecha.getMonth()+ 2) +"/"+ fecha.getFullYear())
 
 export const Libros = [{
         id: 0,
@@ -9,7 +11,10 @@ export const Libros = [{
         sinopsis: "El principito es un libro",
         img: "../../img/elprincipito.jpg",
         pasillo: "Pasillo 7",
-        estanteria: "Estaneria 3"
+        estanteria: "Estaneria 3",
+        estado: false,
+        fechaDevolucion: fechaDevolucion
+
     },
     {
         id: 1,
@@ -20,7 +25,9 @@ export const Libros = [{
         sinopsis: "Los diez negritos es un libro",
         img: "../../img/dieznegritos.jpg",
         pasillo: "Pasillo 2",
-        estanteria: "Estaneria 4"
+        estanteria: "Estaneria 4",
+        estado: false,
+        fechaDevolucion: fechaDevolucion
     },
     {
         id: 2,
@@ -31,7 +38,9 @@ export const Libros = [{
         sinopsis: "El libro del señor de los anillos",
         img: "../../img/señordelosanillos.jpg",
         pasillo: "Pasillo 1",
-        estanteria: "Estaneria 7"
+        estanteria: "Estaneria 7",
+        estado: false,
+        fechaDevolucion: fechaDevolucion
     },
     {
         id: 3,
@@ -42,7 +51,9 @@ export const Libros = [{
         sinopsis: "Libro de Peter Pan",
         img: "../../img/peterpan.jpg",
         pasillo: "Pasillo 8",
-        estanteria: "Estaneria 3"
+        estanteria: "Estaneria 3",
+        estado: false,
+        fechaDevolucion: fechaDevolucion
     },
     {
         id: 4,
@@ -53,7 +64,9 @@ export const Libros = [{
         sinopsis: "Libro de Narnia",
         img: "../../img/narnia.jpg",
         pasillo: "Pasillo 6",
-        estanteria: "Estaneria 2"
+        estanteria: "Estaneria 2",
+        estado: false,
+        fechaDevolucion: fechaDevolucion
     },
     {
         id: 5,
@@ -64,7 +77,9 @@ export const Libros = [{
         sinopsis: "Las 48 leyes del poder",
         img: "../../img/48leyes.jpg",
         pasillo: "Pasillo 5",
-        estanteria: "Estaneria 5"
+        estanteria: "Estaneria 5",
+        estado: false,
+        fechaDevolucion: fechaDevolucion 
     },
 ]
 

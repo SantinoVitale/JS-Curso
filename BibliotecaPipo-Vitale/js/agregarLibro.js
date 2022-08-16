@@ -1,7 +1,8 @@
 import { Libros } from "./DB.js"
 
+
 class Libro { // Creacion de la clase Libro
-    constructor(id, titulo, autor, editorial, isbn, sinopsis, img, pasillo, estanteria) {
+    constructor(id, titulo, autor, editorial, isbn, sinopsis, img, pasillo, estanteria, estado, fechaDevolucion) {
         this.id = +(id)
         this.titulo = titulo
         this.autor = autor
@@ -11,7 +12,8 @@ class Libro { // Creacion de la clase Libro
         this.img = img
         this.pasillo = pasillo
         this.estanteria = estanteria
-        this.estado = false
+        this.estado = estado
+        this.fechaDevolucion = fechaDevolucion
     }
 }
 const button = document.querySelector(".form_button");
@@ -33,7 +35,7 @@ let agregarLibro = () => {
     let img = document.getElementById("img").value
     let pasillo = document.getElementById("pasillo").value
     let estanteria = document.getElementById("estanteria").value
-    Libros.push(new Libro(id, titulo, autor, editorial, isbn, sinopsis, img, pasillo, estanteria))
+    Libros.push(new Libro(id, titulo, autor, editorial, isbn, sinopsis, img, pasillo, estanteria, false))
     console.log(Libros)
     for (const Libro of Libros) {
         guardarLibro("Libro" + Libro.id, JSON.stringify(Libro))
