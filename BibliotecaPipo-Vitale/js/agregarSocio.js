@@ -1,17 +1,4 @@
-import { Socios } from "./DB.js"
-
-class Socio{ // Creacion de la clase Socio
-    constructor(id, nombre, apellido, dni, email, telefono, domicilio) {
-        this.id = +(id)
-        this.nombre = nombre
-        this.apellido = apellido
-        this.dni = dni
-        this.email = email
-        this.telefono = telefono
-        this.domicilio = domicilio
-        this.observaciones = observaciones
-    }
-}
+import { Socios, Socio } from "./DB.js"
 
 const button = document.querySelector(".form_button");
 

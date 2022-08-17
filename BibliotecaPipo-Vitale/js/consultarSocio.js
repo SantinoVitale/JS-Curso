@@ -4,19 +4,21 @@ let input = document.querySelector(".consulta_style-search");
 
 for(let i = 0; i < localStorage.length; i++){
     let traerSocio = JSON.parse(localStorage.getItem("Socio" + i))
-    let contenedor = document.createElement("div")
-    contenedor.innerHTML = `<div class="consulta_style-fieldset">
-     <ul>
-        <li>Nombre: ${traerSocio.nombre} </li>
-        <li>Apellido: ${traerSocio.apellido} </li>
-        <li>DNI: ${traerSocio.dni} </li>
-        <li>Email: ${traerSocio.email} </li>
-        <li>Telefono: ${traerSocio.telefono} </li>
-        <li>Domicilio: ${traerSocio.domicilio} </li>
-        <li>Observaciones: ${traerSocio.observaciones} </li>
-     </ul>
-    </div>`;    
-    document.querySelector(".consulta_style-orden").appendChild(contenedor)   
+    if (traerSocio != null){ // Con esto se libera el error de que intenta leer todas las keys y como no todas son de Socios tira error, con esto se libera del error ya que solo trabaja con los que le da un valor, osea con los Socios
+        let contenedor = document.createElement("div")
+        contenedor.innerHTML = `<div class="consulta_style-fieldset">
+        <ul>
+            <li>Nombre: ${traerSocio.nombre} </li>
+            <li>Apellido: ${traerSocio.apellido} </li>
+            <li>DNI: ${traerSocio.dni} </li>
+            <li>Email: ${traerSocio.email} </li>
+            <li>Telefono: ${traerSocio.telefono} </li>
+            <li>Domicilio: ${traerSocio.domicilio} </li>
+            <li>Observaciones: ${traerSocio.observaciones} </li>
+        </ul>
+        </div>`;    
+        document.querySelector(".consulta_style-orden").appendChild(contenedor) 
+    }
 }
 
 const buscarSocio = () => {

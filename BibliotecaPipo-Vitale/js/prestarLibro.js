@@ -1,23 +1,57 @@
+import { fechaDevolucion, Libros, Socios } from "./DB.js";
+
 for (let i = 0; i < localStorage.length; i++) {
-    let traerLibro = JSON.parse(localStorage.getItem("Libro" + i))
-    let traerSocio = JSON.parse(localStorage.getItem("Socio" + i))
-    let contenedor2 = document.createElement("datalist")
-    let contenedor = document.createElement("datalist")
-    contenedor2.innerHTML = `<option> ${traerSocio.nombre} </option>`;
-    contenedor.innerHTML = `<option> ${traerLibro.titulo} </option>`;
-    document.querySelector("#libro").appendChild(contenedor)
-    document.querySelector("#socio").appendChild(contenedor2)
+    let traerTitulo = JSON.parse(localStorage.getItem("Libro" + i))
+    if(traerTitulo != null){
+        let contenedor = document.createElement("datalist")
+        contenedor.innerHTML = `<option> ${traerTitulo.titulo} </option>`;
+        document.querySelector("#libro").appendChild(contenedor)
+    }
+}
+
+for (let o = 0;o < localStorage.length; o++){
+    
+    let traerSocio = JSON.parse(localStorage.getItem("Socio" + o))
+    if(traerSocio != null){
+        let contenedor2 = document.createElement("datalist")
+        contenedor2.innerHTML = `<option> ${traerSocio.nombre} </option>`;
+        document.querySelector("#socio").appendChild(contenedor2)
+    }
 }
 
 
 const inputPrestar = document.querySelector(".form_button");
-
+const guardarSocio = (clave, valor) => {
+    localStorage.setItem(clave, valor)
+};
+const guardarLibro = (clave, valor) => {
+    localStorage.setItem(clave, valor)
+};
 
 const prestarLibro = () =>{
     let libroPrestado = document.getElementById("libros").value
     let socioPrestado = document.getElementById("socios").value
-    console.log(libroPrestado)
-    console.log(socioPrestado)
+    Libros.forEach(libro => {
+        if(libroPrestado == libro.titulo){
+            libro.socioPrestado = socioPrestado
+            libro.fechaDevolucion = fechaDevolucion
+            libro.estado = true
+            console.log(libro)
+            guardarLibro("Libro" + libro.id, JSON.stringify(libro))
+        }
+    })
+    Socios.forEach(socio => {
+        if(socioPrestado == socio.nombre){
+            socio.libroPrestado = libroPrestado
+            console.log(socio)
+            guardarSocio("Socio" + socio.id, JSON.stringify(socio))
+        }
+    })
+    
+    
+    
+    
+    
 }
 
 inputPrestar.addEventListener("click", (e) => {

@@ -1,12 +1,5 @@
-import { Autores } from "./DB.js";
+import { Autores, Autor } from "./DB.js";
 
-class Autor { // Creacion de la clase autor
-    constructor(id, nombre, apellido) {
-        this.id = +(id)
-        this.nombre = nombre
-        this.apellido = apellido
-    }
-}
 const button = document.querySelector(".form_button");
 
 const guardarAutor = (clave, valor) => {

@@ -1,11 +1,4 @@
-import { Editoriales } from "./DB.js";
-
-class Editorial{ // Creacion de la clase Editorial
-    constructor(id, nombre) {
-        this.id = +(id)
-        this.nombre = nombre
-    }
-}
+import { Editoriales, Editorial} from "./DB.js";
 const button = document.querySelector(".form_button");
 
 const guardarEditorial = (clave, valor) => {

@@ -1,21 +1,7 @@
-import { Libros } from "./DB.js"
+import { Libros, Libro } from "./DB.js"
 
 
-class Libro { // Creacion de la clase Libro
-    constructor(id, titulo, autor, editorial, isbn, sinopsis, img, pasillo, estanteria, estado, fechaDevolucion) {
-        this.id = +(id)
-        this.titulo = titulo
-        this.autor = autor
-        this.editorial = editorial
-        this.isbn = isbn
-        this.sinopsis = sinopsis
-        this.img = img
-        this.pasillo = pasillo
-        this.estanteria = estanteria
-        this.estado = estado
-        this.fechaDevolucion = fechaDevolucion
-    }
-}
+
 const button = document.querySelector(".form_button");
 
 const guardarLibro = (clave, valor) => {

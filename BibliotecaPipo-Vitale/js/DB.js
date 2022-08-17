@@ -2,6 +2,22 @@
 export var fecha = new Date()
 export var fechaDevolucion = (fecha.getDate() + "/" + +(fecha.getMonth()+ 2) +"/"+ fecha.getFullYear())
 
+export class Libro { // Creacion de la clase Libro
+    constructor(id, titulo, autor, editorial, isbn, sinopsis, img, pasillo, estanteria, estado, fechaDevolucion) {
+        this.id = +(id)
+        this.titulo = titulo
+        this.autor = autor
+        this.editorial = editorial
+        this.isbn = isbn
+        this.sinopsis = sinopsis
+        this.img = img
+        this.pasillo = pasillo
+        this.estanteria = estanteria
+        this.estado = estado
+        this.fechaDevolucion = fechaDevolucion
+    }
+}
+
 export const Libros = [{
         id: 0,
         titulo: "El principito",
@@ -14,7 +30,7 @@ export const Libros = [{
         estanteria: "Estaneria 3",
         estado: false,
         socioPrestado: "",
-        fechaDevolucion: fechaDevolucion
+        fechaDevolucion: ""
 
     },
     {
@@ -29,7 +45,7 @@ export const Libros = [{
         estanteria: "Estaneria 4",
         estado: false,
         socioPrestado: "",
-        fechaDevolucion: fechaDevolucion
+        fechaDevolucion: ""
     },
     {
         id: 2,
@@ -43,7 +59,7 @@ export const Libros = [{
         estanteria: "Estaneria 7",
         estado: false,
         socioPrestado: "",
-        fechaDevolucion: fechaDevolucion
+        fechaDevolucion: ""
     },
     {
         id: 3,
@@ -57,7 +73,7 @@ export const Libros = [{
         estanteria: "Estaneria 3",
         estado: false,
         socioPrestado: "",
-        fechaDevolucion: fechaDevolucion
+        fechaDevolucion: ""
     },
     {
         id: 4,
@@ -71,7 +87,7 @@ export const Libros = [{
         estanteria: "Estaneria 2",
         estado: false,
         socioPrestado: "",
-        fechaDevolucion: fechaDevolucion
+        fechaDevolucion: ""
     },
     {
         id: 5,
@@ -85,11 +101,19 @@ export const Libros = [{
         estanteria: "Estaneria 5",
         estado: false,
         socioPrestado: "",
-        fechaDevolucion: fechaDevolucion 
+        fechaDevolucion: ""
     },
 ]
 
 // Autores
+export class Autor { // Creacion de la clase autor
+    constructor(id, nombre, apellido) {
+        this.id = +(id)
+        this.nombre = nombre
+        this.apellido = apellido
+    }
+}
+
 export const Autores = [{
         id: 0,
         nombre: "Antoine",
@@ -123,6 +147,14 @@ export const Autores = [{
 ]
 
 // Editoriales
+
+export class Editorial{ // Creacion de la clase Editorial
+    constructor(id, nombre) {
+        this.id = +(id)
+        this.nombre = nombre
+    }
+}
+
 export const Editoriales = [{
         id: 0,
         nombre: "Océano Historias gráficas"
@@ -150,6 +182,19 @@ export const Editoriales = [{
 ]
 
 //Socios
+
+export class Socio{ // Creacion de la clase Socio
+    constructor(id, nombre, apellido, dni, email, telefono, domicilio) {
+        this.id = +(id)
+        this.nombre = nombre
+        this.apellido = apellido
+        this.dni = dni
+        this.email = email
+        this.telefono = telefono
+        this.domicilio = domicilio
+        this.observaciones = observaciones
+    }
+}
 
 export const Socios = [{
         id: "0",
