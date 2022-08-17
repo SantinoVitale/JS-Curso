@@ -109,21 +109,17 @@
             <form action="">
                 <label for="Libro">Libro: </label>
                 <div class="form_style-input">
-                <input list="libro" name="Libro" placeholder="Libro 1">
+                <input list="libro" id="libros" name="Libro" placeholder="Libro 1">
                 <datalist id="libro">
                 </datalist>
                 </div>
                 <label for="Socio">Socio: </label>
                 <div class="form_style-input">
-                <input list="socio" name="Socio" placeholder="Socio 1">
+                <input list="socio" id="socios" name="Socio" placeholder="Socio 1">
                 <datalist id="socio">
                 </datalist>
                 </div>
-                <label for="fecha_prestamo">Fecha del préstamo: </label>
-                <div class="form_style-input">
-                <input type="date" name="fecha_prestamo">
-                </div>
-                <a class="form_button" href="#">Prestar Libro</a>
+                <input class="form_button" type="button" value="Prestar Libro">
             </form>
         </div>
 
@@ -158,7 +154,7 @@
             <p>Todos los derechos reservados © 2021 <b>PipoCorp.</b></p>
         </div>
     </footer>
-    <script src="../../js/prestarLibro.js"></script>
+    <script src="../../js/prestarLibro.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>

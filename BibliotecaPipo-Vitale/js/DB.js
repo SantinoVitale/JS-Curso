@@ -13,6 +13,7 @@ export const Libros = [{
         pasillo: "Pasillo 7",
         estanteria: "Estaneria 3",
         estado: false,
+        socioPrestado: "",
         fechaDevolucion: fechaDevolucion
 
     },
@@ -27,6 +28,7 @@ export const Libros = [{
         pasillo: "Pasillo 2",
         estanteria: "Estaneria 4",
         estado: false,
+        socioPrestado: "",
         fechaDevolucion: fechaDevolucion
     },
     {
@@ -40,6 +42,7 @@ export const Libros = [{
         pasillo: "Pasillo 1",
         estanteria: "Estaneria 7",
         estado: false,
+        socioPrestado: "",
         fechaDevolucion: fechaDevolucion
     },
     {
@@ -53,6 +56,7 @@ export const Libros = [{
         pasillo: "Pasillo 8",
         estanteria: "Estaneria 3",
         estado: false,
+        socioPrestado: "",
         fechaDevolucion: fechaDevolucion
     },
     {
@@ -66,6 +70,7 @@ export const Libros = [{
         pasillo: "Pasillo 6",
         estanteria: "Estaneria 2",
         estado: false,
+        socioPrestado: "",
         fechaDevolucion: fechaDevolucion
     },
     {
@@ -79,6 +84,7 @@ export const Libros = [{
         pasillo: "Pasillo 5",
         estanteria: "Estaneria 5",
         estado: false,
+        socioPrestado: "",
         fechaDevolucion: fechaDevolucion 
     },
 ]
@@ -153,7 +159,8 @@ export const Socios = [{
         email: "santino.pavese@gmial.com",
         telefono: "2612555473",
         domicilio: "Chile 925",
-        observaciones: "Gordo"
+        observaciones: "Gordo",
+        libroPrestado: ""
     },
     {
         id: "1",
@@ -163,7 +170,8 @@ export const Socios = [{
         email: "Enrique.P@gmail.com",
         telefono: "2612123567",
         domicilio: "San Martin 2300",
-        observaciones: "Tutor de Coder"
+        observaciones: "Tutor de Coder",
+        libroPrestado: ""
     },
     {
         id: "2",
@@ -173,7 +181,8 @@ export const Socios = [{
         email: "leopoldo.g@gmail.com",
         telefono: "2614648847",
         domicilio: "Azcuenaga 1832",
-        observaciones: "Morocho"
+        observaciones: "Morocho",
+        libroPrestado: ""
     },
     {
         id: "3",
@@ -183,7 +192,8 @@ export const Socios = [{
         email: "gaston.k@gmail.com",
         telefono: "261277324",
         domicilio: "Rodriguez Peñas 2000",
-        observaciones: "Le gustan los dinosaurios"
+        observaciones: "Le gustan los dinosaurios",
+        libroPrestado: ""
     },
     {
         id: "4",
@@ -193,7 +203,8 @@ export const Socios = [{
         email: "Valentin.h@gmail.com",
         telefono: "2617320014",
         domicilio: "San Martin 202",
-        observaciones: "Pelo largo"
+        observaciones: "Pelo largo",
+        libroPrestado: ""
     },
     {
         id: "5",
@@ -203,6 +214,7 @@ export const Socios = [{
         email: "Luca.l@gmail.com",
         telefono: "2611212102",
         domicilio: "Si tiene",
-        observaciones: "Alto, no proporcionó domicilio"
+        observaciones: "Alto, no proporcionó domicilio",
+        libroPrestado: ""
     },
 ]
