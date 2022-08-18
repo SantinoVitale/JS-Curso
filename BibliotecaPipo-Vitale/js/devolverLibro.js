@@ -19,27 +19,25 @@ for (let i = 0; i < localStorage.length; i++) {
 
 
 const mirarLibro = () => {
-        let infoLibro = document.getElementById("inputMirar").value
-        Libros.forEach(libro => {
-            if (infoLibro == libro.titulo) {
-                let contenedor = document.createElement("div")
-                contenedor.innerHTML = `<div class="consulta_style"> <!--Libro seleccionado (Con el backend aplicado este arhivo no va a estar más)-->
-                Info del libro prestado
-            </div>
+    let infoLibro = document.getElementById("inputMirar").value
+    Libros.forEach(libro => {
+        if (infoLibro == libro.titulo) {
+            const infoLibroNew = JSON.parse(localStorage.getItem("Libro" + libro.id))
+            let contenedor = document.createElement("div")
+            contenedor.innerHTML = `<div class="consulta_style">
             <div class="consulta_style_fieldset-centrado">
             <div class="consulta_style_fieldset-libro">
-                <div class="consulta_style-padding">
-                    <ul>
-                        <li>${infoLibro.titulo}</li>
-                        <li>${infoLibro.autor}</li>
-                        <li>${infoLibro.editorial}</li>
-                        <li>${infoLibro.estado}</li>
-                    </ul>
-                </div>
-                <div>
-                    <a class="form_button" href="#">Confirmar devolucion</a>
-                    <a class="form_button" href="#">Generar multa</a>
-                </div>
+            <div class="consulta_style-padding">
+                <ul>
+                   <li class="fs-6">Libro: ${infoLibroNew.titulo}</li>
+                    <li class="fs-6">Socio Prestado: ${infoLibroNew.socioPrestado}</li>
+                    <li class="fs-6">Estado: ${infoLibroNew.estado}</li>
+                </ul>
+            </div>
+            <div>
+                <a class="form_button" href="#">Confirmar devolucion</a>
+                <a class="form_button" href="#">Generar multa</a>
+            </div>
             </div>
             </div>`;
                 document.querySelector("#infoLibro").appendChild(contenedor)
