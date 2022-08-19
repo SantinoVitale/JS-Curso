@@ -18,7 +18,7 @@ let agregarSocio = () => {
     let telefono = document.getElementById("telefono").value
     let domicilio = document.getElementById("domicilio").value
     let observaciones = document.getElementById("observaciones").value
-    Socios.push(new Socio(id++, nombre, apellido, dni, email, telefono, domicilio, observaciones))
+    Socios.push(new Socio(id++, nombre, apellido, dni, email, telefono, domicilio, observaciones, "", ""))
     console.log(Socios)
     for (const Socio of Socios) {
         guardarSocio("Socio" + Socio.id, JSON.stringify(Socio))

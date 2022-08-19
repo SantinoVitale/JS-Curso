@@ -185,7 +185,7 @@ export const Editoriales = [{
 //Socios
 
 export class Socio{ // Creacion de la clase Socio
-    constructor(id, nombre, apellido, dni, email, telefono, domicilio) {
+    constructor(id, nombre, apellido, dni, email, telefono, domicilio, observaciones, libroPrestado, multas) {
         this.id = +(id)
         this.nombre = nombre
         this.apellido = apellido
@@ -194,6 +194,8 @@ export class Socio{ // Creacion de la clase Socio
         this.telefono = telefono
         this.domicilio = domicilio
         this.observaciones = observaciones
+        this.libroPrestado = libroPrestado
+        this.multas = multas
     }
 }
 
@@ -206,7 +208,8 @@ export const Socios = [{
         telefono: "2612555473",
         domicilio: "Chile 925",
         observaciones: "Gordo",
-        libroPrestado: ""
+        libroPrestado: "",
+        multas: ""
     },
     {
         id: "1",
@@ -217,7 +220,8 @@ export const Socios = [{
         telefono: "2612123567",
         domicilio: "San Martin 2300",
         observaciones: "Tutor de Coder",
-        libroPrestado: ""
+        libroPrestado: "",
+        multas: ""
     },
     {
         id: "2",
@@ -228,7 +232,8 @@ export const Socios = [{
         telefono: "2614648847",
         domicilio: "Azcuenaga 1832",
         observaciones: "Morocho",
-        libroPrestado: ""
+        libroPrestado: "",
+        multas: ""
     },
     {
         id: "3",
@@ -239,7 +244,8 @@ export const Socios = [{
         telefono: "261277324",
         domicilio: "Rodriguez Peñas 2000",
         observaciones: "Le gustan los dinosaurios",
-        libroPrestado: ""
+        libroPrestado: "",
+        multas: ""
     },
     {
         id: "4",
@@ -250,7 +256,8 @@ export const Socios = [{
         telefono: "2617320014",
         domicilio: "San Martin 202",
         observaciones: "Pelo largo",
-        libroPrestado: ""
+        libroPrestado: "",
+        multas: ""
     },
     {
         id: "5",
@@ -261,6 +268,7 @@ export const Socios = [{
         telefono: "2611212102",
         domicilio: "Si tiene",
         observaciones: "Alto, no proporcionó domicilio",
-        libroPrestado: ""
+        libroPrestado: "",
+        multas: ""
     },
 ]
