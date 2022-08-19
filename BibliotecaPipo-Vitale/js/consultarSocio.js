@@ -37,7 +37,7 @@ const buscarSocio = (e) => {
       })
     );
   } else if(value.trim().length == 0){
-    showBooks(Socios)
+    showSocios(Socios)
   }else {
     clearList();
   }

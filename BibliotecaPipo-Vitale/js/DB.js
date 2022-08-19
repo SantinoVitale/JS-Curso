@@ -30,8 +30,8 @@ export const Libros = [{
         pasillo: "Pasillo 7",
         estanteria: "Estaneria 3",
         estado: false,
-        socioPrestado: "",
-        fechaDevolucion: ""
+        socioPrestado: "No está prestado",
+        fechaDevolucion: "No está prestado"
 
     },
     {
@@ -45,8 +45,8 @@ export const Libros = [{
         pasillo: "Pasillo 2",
         estanteria: "Estaneria 4",
         estado: false,
-        socioPrestado: "",
-        fechaDevolucion: ""
+        socioPrestado: "No está prestado",
+        fechaDevolucion: "No está prestado"
     },
     {
         id: 2,
@@ -59,8 +59,8 @@ export const Libros = [{
         pasillo: "Pasillo 1",
         estanteria: "Estaneria 7",
         estado: false,
-        socioPrestado: "",
-        fechaDevolucion: ""
+        socioPrestado: "No está prestado",
+        fechaDevolucion: "No está prestado"
     },
     {
         id: 3,
@@ -73,8 +73,8 @@ export const Libros = [{
         pasillo: "Pasillo 8",
         estanteria: "Estaneria 3",
         estado: false,
-        socioPrestado: "",
-        fechaDevolucion: ""
+        socioPrestado: "No está prestado",
+        fechaDevolucion: "No está prestado"
     },
     {
         id: 4,
@@ -87,8 +87,8 @@ export const Libros = [{
         pasillo: "Pasillo 6",
         estanteria: "Estaneria 2",
         estado: false,
-        socioPrestado: "",
-        fechaDevolucion: ""
+        socioPrestado: "No está prestado",
+        fechaDevolucion: "No está prestado"
     },
     {
         id: 5,
@@ -101,8 +101,8 @@ export const Libros = [{
         pasillo: "Pasillo 5",
         estanteria: "Estaneria 5",
         estado: false,
-        socioPrestado: "",
-        fechaDevolucion: ""
+        socioPrestado: "No está prestado",
+        fechaDevolucion: "No está prestado"
     },
 ]
 
@@ -208,8 +208,8 @@ export const Socios = [{
         telefono: "2612555473",
         domicilio: "Chile 925",
         observaciones: "Gordo",
-        libroPrestado: "",
-        multas: ""
+        libroPrestado: "No posee libro",
+        multas: "No posee multa"
     },
     {
         id: "1",
@@ -220,8 +220,8 @@ export const Socios = [{
         telefono: "2612123567",
         domicilio: "San Martin 2300",
         observaciones: "Tutor de Coder",
-        libroPrestado: "",
-        multas: ""
+        libroPrestado: "No posee libro",
+        multas: "No posee multa"
     },
     {
         id: "2",
@@ -232,8 +232,8 @@ export const Socios = [{
         telefono: "2614648847",
         domicilio: "Azcuenaga 1832",
         observaciones: "Morocho",
-        libroPrestado: "",
-        multas: ""
+        libroPrestado: "No posee libro",
+        multas: "No posee multa"
     },
     {
         id: "3",
@@ -244,8 +244,8 @@ export const Socios = [{
         telefono: "261277324",
         domicilio: "Rodriguez Peñas 2000",
         observaciones: "Le gustan los dinosaurios",
-        libroPrestado: "",
-        multas: ""
+        libroPrestado: "No posee libro",
+        multas: "No posee multa"
     },
     {
         id: "4",
@@ -256,8 +256,8 @@ export const Socios = [{
         telefono: "2617320014",
         domicilio: "San Martin 202",
         observaciones: "Pelo largo",
-        libroPrestado: "",
-        multas: ""
+        libroPrestado: "No posee libro",
+        multas: "No posee multa"
     },
     {
         id: "5",
@@ -268,7 +268,7 @@ export const Socios = [{
         telefono: "2611212102",
         domicilio: "Si tiene",
         observaciones: "Alto, no proporcionó domicilio",
-        libroPrestado: "",
-        multas: ""
+        libroPrestado: "No posee libro",
+        multas: "No posee multa"
     },
 ]

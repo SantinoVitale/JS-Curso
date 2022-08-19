@@ -36,14 +36,12 @@ const prestarLibro = () =>{
             libro.socioPrestado = socioPrestado
             libro.fechaDevolucion = fechaDevolucion
             libro.estado = true
-            console.log(libro)
             guardarLibro("Libro" + libro.id, JSON.stringify(libro))
         }
     })
     Socios.forEach(socio => {
         if(socioPrestado == socio.nombre){
             socio.libroPrestado = libroPrestado
-            console.log(socio)
             guardarSocio("Socio" + socio.id, JSON.stringify(socio))
         }
     })

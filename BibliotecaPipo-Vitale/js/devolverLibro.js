@@ -1,4 +1,5 @@
 import {
+    Libro,
     Libros, Socios
 } from "./DB.js";
 
@@ -6,8 +7,8 @@ let inputLibroPrestado = document.querySelector(".form_button")
 let inputDevolver = document.querySelector("#Devolver")
 let inputMultar = document.querySelector("#Multar")
 
-for (let i = 0; i < localStorage.length; i++) {
-    let traerTitulo = JSON.parse(localStorage.getItem("Libro" + i))
+for (const Libro of Libros) {
+    let traerTitulo = JSON.parse(localStorage.getItem("Libro" + Libro.id))
     if (traerTitulo != null && traerTitulo.estado == true) {
         let contenedor = document.createElement("datalist")
         contenedor.innerHTML = `<option> ${traerTitulo.titulo} </option>`;
@@ -16,7 +17,6 @@ for (let i = 0; i < localStorage.length; i++) {
 }
 
 const mirarLibro = () => {
-    clearList();
     let infoLibro = document.getElementById("inputMirar").value
     Libros.forEach(libro => {
         if (infoLibro == libro.titulo) {
@@ -29,8 +29,8 @@ const mirarLibro = () => {
             <div class="consulta_style-padding">
                 <ul>
                    <li class="fs-6">Libro: ${infoLibroNew.titulo}</li>
-                    <li class="fs-6">Socio Prestado: ${infoLibroNew.socioPrestado}</li>
-                    <li class="fs-6">Estado: ${infoLibroNew.fechaDevolucion}</li>
+                    <li id="SocioPrestado" class="fs-6">Socio Prestado: ${infoLibroNew.socioPrestado}</li>
+                    <li class="fs-6">Fecha Devolucion: ${infoLibroNew.fechaDevolucion}</li>
                 </ul>
             </div>
             <form>
@@ -46,22 +46,19 @@ const mirarLibro = () => {
 
     
 }
-const guardarLibro = (clave, valor) => {
-    localStorage.setItem(clave, valor)
-};
-const guardarSocio = (clave, valor) => {
+const guardar = (clave, valor) => {
     localStorage.setItem(clave, valor)
 };
 
 const devolverLibro = () => {
     let infoLibro = document.getElementById("inputMirar").value
-    Libros.forEach(libro => {
-        if (infoLibro == libro.titulo) {
-            const libroBuscado = JSON.parse(localStorage.getItem("Libro" + libro.id))
-            libroBuscado.socioPrestado = ""
+    Libros.forEach(Libro => {
+        if (infoLibro == Libro.titulo) {
+            const libroBuscado = JSON.parse(localStorage.getItem("Libro" + Libro.id))
+            libroBuscado.socioPrestado = "No está prestado"
             libroBuscado.estado = false
-            libroBuscado.fechaDevolucion = ""
-            guardarLibro("Libro" + libro.id, JSON.stringify(libro))
+            libroBuscado.fechaDevolucion = "No está prestado"
+            guardar("Libro" + Libro.id, JSON.stringify(Libro))
         }
     })
     clearList();
@@ -69,21 +66,15 @@ const devolverLibro = () => {
 
 const multarLibro = () => {
     let infoSocio = document.getElementById("inputMirar").value
-    Socios.forEach(socio => {
-        if (infoSocio == socio.libroPrestado){
-            const socioBuscado = JSON.parse(localStorage.getItem("Socio" + socio.id))
-            socioBuscado.libroPrestado = ""
-            socioBuscado.multas = "$100"
-            guardarSocio("Socio" + socio.id, JSON.stringify(socio))
-            console.log(socioBuscado)
-        }
-    })
+    for (const Socio of Socios){
+        
+    }
     clearList();
 }
 
 const clearList = () => {
     const borrarLibro = document.querySelector(".consulta_style");
-    while (borrarLibro.firstChild) {
+    while (borrarLibro.firstChild != null) {
       borrarLibro.removeChild(borrarLibro.firstChild);
     }
   };
