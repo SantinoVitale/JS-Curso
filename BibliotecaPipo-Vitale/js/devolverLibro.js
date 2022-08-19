@@ -1,11 +1,10 @@
 import {
-    fechaDevolucion,
-    Libros,
-    Socios,
-    Libro
+    Libros
 } from "./DB.js";
 
-const inputLibroPrestado = document.querySelector(".form_button")
+let inputLibroPrestado = document.querySelector(".form_button")
+let inputDevolver = document.querySelector("#Devolver")
+let inputMultar = document.querySelector("#Multar")
 
 for (let i = 0; i < localStorage.length; i++) {
     let traerTitulo = JSON.parse(localStorage.getItem("Libro" + i))
@@ -15,8 +14,6 @@ for (let i = 0; i < localStorage.length; i++) {
         document.querySelector("#libro_prestado").appendChild(contenedor)
     }
 }
-
-
 
 const mirarLibro = () => {
     let infoLibro = document.getElementById("inputMirar").value
@@ -34,18 +31,41 @@ const mirarLibro = () => {
                     <li class="fs-6">Estado: ${infoLibroNew.estado}</li>
                 </ul>
             </div>
+            <form>
             <div>
-                <a class="form_button" href="#">Confirmar devolucion</a>
-                <a class="form_button" href="#">Generar multa</a>
+                <img src='${infoLibroNew.img}' width='150' alt='Imagen Libro'>
             </div>
+            </form>
             </div>
             </div>`;
                 document.querySelector("#infoLibro").appendChild(contenedor)
             }
-        })
+    })
+    
+}
+const guardarLibro = (clave, valor) => {
+    localStorage.setItem(clave, valor)
+};
+
+const devolverLibro = () => {
+    let infoLibro = document.getElementById("inputMirar").value
+    Libros.forEach(libro => {
+        if (infoLibro == libro.titulo) {
+            const libroBuscado = JSON.parse(localStorage.getItem("Libro" + libro.id))
+            libroBuscado.socioPrestado = ""
+            libroBuscado.estado = false
+            libroBuscado.fechaDevolucion = ""
+            guardarLibro("Libro" + libro.id, JSON.stringify(libro))
+        }
+    })
 }
 
 inputLibroPrestado.addEventListener("click", (e) => {
     e.preventDefault();
     mirarLibro();
+});
+
+inputDevolver.addEventListener("click", (e) => {
+    e.preventDefault();
+    devolverLibro();
 });

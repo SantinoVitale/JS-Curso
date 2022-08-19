@@ -1,34 +1,57 @@
-import { Editoriales } from "./DB.js";
+import { Editorial, Editoriales } from "./DB.js";
 
 let input = document.querySelector(".consulta_style-search");
 
-for(let i = 0; i < localStorage.length; i++){
-    let traerEditorial = JSON.parse(localStorage.getItem("Editorial" + i))
-    if (traerEditorial != null){ // Con esto se libera el error de que intenta leer todas las keys y como no todas son de Editoriales tira error, con esto se libera del error ya que solo trabaja con los que le da un valor, osea con los Editoriales
-        let contenedor = document.createElement("div")
-        contenedor.innerHTML = `<div class="consulta_style-fieldset">
-         <ul>
-            <li>  ${traerEditorial.nombre} </li>
-        </div>`;    
-        document.querySelector(".consulta_style-orden").appendChild(contenedor)   
-    }
-}
+const showEditoriales = (editoriales) => {
+  clearList();
+  for (const editorial of editoriales) {
+    let consultaStyle = document.querySelector(".consulta_style-orden");
+    let contenedor = document.createElement("div");
+    contenedor.innerHTML = `<div class="consulta_style-fieldset">
+                <ul>
+                    <li>  ${editorial.nombre} </li>
+                </ul>
+                </div>`;
+    consultaStyle.appendChild(contenedor);
+  }
+  if (editoriales.length === 0) {
+    noEditoriales();
+  }
+};
 
-const buscarEditorial = () => {
-    const search = document.getElementById("search").value
-    let resultado = Editoriales.filter((editorial) => editorial.nombre.includes(search))
-    resultado.forEach((editorial) => {
-        let contenedor = document.createElement("div")
-        contenedor.innerHTML = `<div class="consulta_style-fieldset">
-     <ul>
-        <li>  ${editorial.nombre} </li>
-        <li>  ${editorial.apellido} </li>
-    </div>`; 
-        document.querySelector(".consulta_style-orden").appendChild(contenedor)
-    })
-}
+const buscarEditorial = (e) => {
+  let value = e.target.value;
 
-input.addEventListener("input", (e) => {
-    e.preventDefault();
-    buscarEditorial();
-});
+  if (value && value.trim().length > 0) {
+    value = value.trim();
+
+    showEditoriales(
+      Editoriales.filter((editorial) => {
+        return editorial.nombre.includes(value);
+      })
+    );
+  } else if(value.trim().length == 0){
+    showEditoriales(Editoriales)
+  }else {
+    clearList();
+  }
+};
+
+const noEditoriales = () => {
+  const editoriales = document.querySelector("#Editorial");
+  const error = document.createElement("h1");
+  error.classList.add("error-message");
+  const text = document.createTextNode("No results found.");
+  error.append(text);
+  editoriales.append(error);
+};
+
+const clearList = () => {
+  const editoriales = document.querySelector("#Editorial");
+  while (editoriales.firstChild) {
+    editoriales.removeChild(editoriales.firstChild);
+  }
+};
+
+input.addEventListener("input", buscarEditorial);
+showEditoriales(Editoriales);

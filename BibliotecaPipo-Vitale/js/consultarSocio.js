@@ -2,49 +2,62 @@ import { Socios } from "./DB.js";
 
 let input = document.querySelector(".consulta_style-search");
 
-for(let i = 0; i < localStorage.length; i++){
-    let traerSocio = JSON.parse(localStorage.getItem("Socio" + i))
-    if (traerSocio != null){ // Con esto se libera el error de que intenta leer todas las keys y como no todas son de Socios tira error, con esto se libera del error ya que solo trabaja con los que le da un valor, osea con los Socios
-        let contenedor = document.createElement("div")
-        contenedor.innerHTML = `<div class="consulta_style-fieldset">
-        <ul>
-            <li>Nombre: ${traerSocio.nombre} </li>
-            <li>Apellido: ${traerSocio.apellido} </li>
-            <li>DNI: ${traerSocio.dni} </li>
-            <li>Email: ${traerSocio.email} </li>
-            <li>Telefono: ${traerSocio.telefono} </li>
-            <li>Domicilio: ${traerSocio.domicilio} </li>
-            <li>Observaciones: ${traerSocio.observaciones} </li>
-        </ul>
-        </div>`;    
-        document.querySelector(".consulta_style-orden").appendChild(contenedor) 
-    }
-}
+const showSocios = (socios) => {
+  clearList();
+  for (const socio of socios) {
+    let consultaStyle = document.querySelector(".consulta_style-orden");
+    let contenedor = document.createElement("div");
+    contenedor.innerHTML = `<div class="consulta_style-fieldset">
+                <ul>
+                    <li>  ${socio.nombre} </li>
+                    <li>  ${socio.apellido} </li>
+                    <li>  ${socio.dni} </li>
+                    <li>  ${socio.email} </li>
+                    <li>  ${socio.telefono} </li>
+                    <li>  ${socio.domicilio} </li>
+                    <li>  ${socio.observaciones} </li>
+                </ul>
+                </div>`;
+    consultaStyle.appendChild(contenedor);
+  }
+  if (socios.length === 0) {
+    noSocios();
+  }
+};
 
-const buscarSocio = () => {
-    const search = document.getElementById("search".toLowerCase()).value
-    let resultado = Socios.filter((socio) => socio.nombre.includes(search))
-    resultado.forEach((socio) => {
-        let contenedor = document.createElement("div")
-        contenedor.innerHTML = `<div class="consulta_style-fieldset">
-     <ul>
-        <li>Nombre: ${socio.nombre} </li>
-        <li>Apellido: ${socio.apellido} </li>
-        <li>DNI: ${socio.dni} </li>
-        <li>Email: ${socio.email} </li>
-        <li>Telefono: ${socio.telefono} </li>
-        <li>Domicilio: ${socio.domicilio} </li>
-        <li>Observaciones: ${socio.observaciones} </li>
-     </ul>
-    </div>`;
-        document.querySelector(".consulta_style-orden").appendChild(contenedor)
-    })
-}
+const buscarSocio = (e) => {
+  let value = e.target.value;
 
+  if (value && value.trim().length > 0) {
+    value = value.trim();
 
+    showSocios(
+      Socios.filter((socio) => {
+        return socio.nombre.includes(value);
+      })
+    );
+  } else if(value.trim().length == 0){
+    showBooks(Socios)
+  }else {
+    clearList();
+  }
+};
 
+const noSocios = () => {
+  const socios = document.querySelector("#Socios");
+  const error = document.createElement("h1");
+  error.classList.add("error-message");
+  const text = document.createTextNode("No results found.");
+  error.append(text);
+  socios.append(error);
+};
 
-input.addEventListener("input", (e) => {
-    e.preventDefault();
-    buscarSocio();
-});
+const clearList = () => {
+  const socios = document.querySelector("#Socios");
+  while (socios.firstChild) {
+    socios.removeChild(socios.firstChild);
+  }
+};
+
+input.addEventListener("input", buscarSocio);
+showSocios(Socios);

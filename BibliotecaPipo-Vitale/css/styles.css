@@ -338,6 +338,10 @@ body {
 .consulta_style_fieldset-centrado {
   display: flex;
   justify-content: center; }
+.error-message{
+  text-align: center;
+  color: aliceblue;
+}
 
 /*-----------------Sección MediaQuerie-----------------*/
 @media (max-width: 1440px) {

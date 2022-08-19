@@ -1,40 +1,58 @@
-import { Autores, } from "./DB.js";
-
+import { Autores } from "./DB.js";
 
 let input = document.querySelector(".consulta_style-search");
 
-for (let i = 0; i < localStorage.length; i++) {
-    let traerAutor = JSON.parse(localStorage.getItem("Autor" + i))
-    if (traerAutor != null) { // Con esto se libera el error de que intenta leer todas las keys y como no todas son de Autor tira error, con esto se libera del error ya que solo trabaja con los que le da un valor, osea con los Autor
-        let contenedor = document.createElement("div")
-        contenedor.innerHTML = `<div class="consulta_style-fieldset">
-     <ul>
-        <li>  ${traerAutor.nombre} </li>
-        <li>  ${traerAutor.apellido} </li>
-    </div>`;
-        document.querySelector(".consulta_style-orden").appendChild(contenedor)
-    }
+const showAutores = (autores) => {
+  clearList();
+  for (const autor of autores) {
+    let consultaStyle = document.querySelector(".consulta_style-orden");
+    let contenedor = document.createElement("div");
+    contenedor.innerHTML = `<div class="consulta_style-fieldset">
+                <ul>
+                    <li>  ${autor.nombre} </li>
+                    <li>  ${autor.apellido} </li>
+                </ul>
+                </div>`;
+    consultaStyle.appendChild(contenedor);
+  }
+  if (autores.length === 0) {
+    noAutores();
+  }
+};
 
-}
+const buscarAutor = (e) => {
+  let value = e.target.value;
 
-const buscarAutor = () => {
-    const search = document.getElementById("search").value
-    let resultado = Autores.filter((autor) => autor.nombre.includes(search))
-    resultado.forEach((autor) => {
-        let contenedor = document.createElement("div")
-        contenedor.innerHTML = `<div class="consulta_style-fieldset">
-     <ul>
-        <li>  ${autor.nombre} </li>
-        <li>  ${autor.apellido} </li>
-    </div>`;
-        document.querySelector(".consulta_style-orden").appendChild(contenedor)
-    })
-}
+  if (value && value.trim().length > 0) {
+    value = value.trim();
 
+    showAutores(
+      Autores.filter((autor) => {
+        return autor.nombre.includes(value);
+      })
+    );
+  } else if(value.trim().length == 0){
+    showAutores(Autores)
+  }else {
+    clearList();
+  }
+};
 
+const noAutores = () => {
+  const autores = document.querySelector("#Autores");
+  const error = document.createElement("h1");
+  error.classList.add("error-message");
+  const text = document.createTextNode("No results found.");
+  error.append(text);
+  autores.append(error);
+};
 
+const clearList = () => {
+  const autores = document.querySelector("#Autores");
+  while (autores.firstChild) {
+    autores.removeChild(autores.firstChild);
+  }
+};
 
-input.addEventListener("input", (e) => {
-    e.preventDefault();
-    buscarAutor();
-});
+input.addEventListener("input", buscarAutor);
+showAutores(Autores);
