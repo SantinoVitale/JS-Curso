@@ -1,7 +1,9 @@
 import { Libros } from "./DB.js";
 
+//------Variables------
 let input = document.querySelector(".consulta_style-search");
 
+//------Funcion para que muestre los libros-------
 const showBooks = (books) => {
   clearList();
   for (const book of books) {
@@ -26,6 +28,7 @@ const showBooks = (books) => {
   }
 };
 
+//------Funcion para buscar el libro------
 const buscarLibro = (e) => {
   let value = e.target.value;
 
@@ -44,6 +47,7 @@ const buscarLibro = (e) => {
   }
 };
 
+//------Funcion por si no hay libros que coincidan con la busqueda------
 const noBooks = () => {
   const libros = document.querySelector("#Libros");
   const error = document.createElement("h1");
@@ -53,6 +57,7 @@ const noBooks = () => {
   libros.append(error);
 };
 
+//------Funcion para limpiar la lista de libros------
 const clearList = () => {
   const libros = document.querySelector("#Libros");
   while (libros.firstChild) {

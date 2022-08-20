@@ -1,7 +1,9 @@
 import { Editorial, Editoriales } from "./DB.js";
 
+//------Variables------
 let input = document.querySelector(".consulta_style-search");
 
+//------Funcion para que muestre las editoriales-------
 const showEditoriales = (editoriales) => {
   clearList();
   for (const editorial of editoriales) {
@@ -19,6 +21,7 @@ const showEditoriales = (editoriales) => {
   }
 };
 
+//------Funcion para buscar la editorial------
 const buscarEditorial = (e) => {
   let value = e.target.value;
 
@@ -37,6 +40,7 @@ const buscarEditorial = (e) => {
   }
 };
 
+//------Funcion por si no hay editoriales que coincidan con la busqueda------
 const noEditoriales = () => {
   const editoriales = document.querySelector("#Editorial");
   const error = document.createElement("h1");
@@ -46,6 +50,7 @@ const noEditoriales = () => {
   editoriales.append(error);
 };
 
+//------Funcion para limpiar la lista de editoriales------
 const clearList = () => {
   const editoriales = document.querySelector("#Editorial");
   while (editoriales.firstChild) {

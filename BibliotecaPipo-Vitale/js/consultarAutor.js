@@ -1,7 +1,9 @@
 import { Autores } from "./DB.js";
 
+//------Variables------
 let input = document.querySelector(".consulta_style-search");
 
+//------Funcion para que muestre los autores-------
 const showAutores = (autores) => {
   clearList();
   for (const autor of autores) {
@@ -20,6 +22,8 @@ const showAutores = (autores) => {
   }
 };
 
+
+//------Funcion para buscar el autor------
 const buscarAutor = (e) => {
   let value = e.target.value;
 
@@ -38,6 +42,7 @@ const buscarAutor = (e) => {
   }
 };
 
+//------Funcion por si no hay autores que coincidan con la busqueda------
 const noAutores = () => {
   const autores = document.querySelector("#Autores");
   const error = document.createElement("h1");
@@ -47,6 +52,7 @@ const noAutores = () => {
   autores.append(error);
 };
 
+//------Funcion para limpiar la lista de Autores------
 const clearList = () => {
   const autores = document.querySelector("#Autores");
   while (autores.firstChild) {
