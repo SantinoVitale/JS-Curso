@@ -4,7 +4,7 @@ function login() {
     let usuario = document.getElementById("usuario").value;
     let password = document.getElementById("password").value;
     let errorLogin = document.getElementById("error");
-    usuario == "Santino" && password == "Vitale" ? location.assign("./pages/home.html") : errorLogin.innerHTML = "<h6 style='color: red;'>ERROR! Usuario o contraseña ingresados incorrectamente</h6>"
+    usuario == "Santino" && password == "Vitale" ? location.assign("./pages/home.html") : swal("Biblioteca Pipo", "El usuario o la contraseña son incorrectos", "warning");
     
 }
 button.addEventListener("click", (e) => {
