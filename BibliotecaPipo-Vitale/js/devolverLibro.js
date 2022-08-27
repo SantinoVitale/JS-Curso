@@ -1,28 +1,36 @@
 import {
     Libro,
-    Libros, Socios
+    Libros,
+    Socios
 } from "./DB.js";
 
-let inputLibroPrestado = document.querySelector(".form_button")
-let inputDevolver = document.querySelector("#Devolver")
-let inputMultar = document.querySelector("#Multar")
+//------Variables------
+let inputLibroPrestado = document.querySelector(".form_button");
+let inputDevolver = document.querySelector("#Devolver");
+let inputMultar = document.querySelector("#Multar");
 
-for (const Libro of Libros) {
-    let traerTitulo = JSON.parse(localStorage.getItem("Libro" + Libro.id))
-    if (traerTitulo != null && traerTitulo.estado == true) {
-        let contenedor = document.createElement("datalist")
+//------Trae los Libros del localstorage------
+const bringBooks = () => {
+    const showBooks = (traerTitulo) => {
+        let contenedor = document.createElement("datalist");
         contenedor.innerHTML = `<option> ${traerTitulo.titulo} </option>`;
-        document.querySelector("#libro_prestado").appendChild(contenedor)
+        document.querySelector("#libro_prestado").appendChild(contenedor);
     }
+    for (const Libro of Libros) {
+        let traerTitulos = JSON.parse(localStorage.getItem("Libro" + Libro.id));
+        traerTitulos.estado === true && showBooks(traerTitulos);
+    }
+    
 }
 
+//------Mostrar los libros cuando haces click en "Mirar Libro"------
 const mirarLibro = () => {
-    let infoLibro = document.getElementById("inputMirar").value
+    let infoLibro = document.getElementById("inputMirar").value;
     Libros.forEach(libro => {
-        if (infoLibro == libro.titulo) {
-            const infoLibroNew = JSON.parse(localStorage.getItem("Libro" + libro.id))
+        if (infoLibro === libro.titulo) {
+            const infoLibroNew = JSON.parse(localStorage.getItem("Libro" + libro.id));
             let contenedorStyle = document.querySelector("#muestraLibro");
-            let contenedor = document.createElement("div")
+            let contenedor = document.createElement("div");
             contenedor.innerHTML = `<div class="consulta_style">
             <div class="consulta_style_fieldset-centrado">
             <div class="consulta_style_fieldset-libro">
@@ -40,45 +48,73 @@ const mirarLibro = () => {
             </form>
             </div>
             </div>`;
-                contenedorStyle.appendChild(contenedor)
-            }
-    })
-
-    
-}
-const guardar = (clave, valor) => {
-    localStorage.setItem(clave, valor)
-};
-
-const devolverLibro = () => {
-    let infoLibro = document.getElementById("inputMirar").value
-    Libros.forEach(Libro => {
-        if (infoLibro == Libro.titulo) {
-            const libroBuscado = JSON.parse(localStorage.getItem("Libro" + Libro.id))
-            libroBuscado.socioPrestado = "No está prestado"
-            libroBuscado.estado = false
-            libroBuscado.fechaDevolucion = "No está prestado"
-            guardar("Libro" + Libro.id, JSON.stringify(Libro))
+            contenedorStyle.appendChild(contenedor);
         }
     })
-    clearList();
 }
 
-const multarLibro = () => {
-    let infoSocio = document.getElementById("inputMirar").value
-    for (const Socio of Socios){
+//------Guardar el estado de "Devuelto" al localStorage------
+const guardar = (clave, valor) => {
+    localStorage.setItem(clave, valor);
+};
+
+//------Funciones para guardar los datos del Socio y del Libro------
+const guardarLibro = (libroCarga) => {
+    libroCarga.estado = false;
+    libroCarga.fechaDevolucion = "No posee libro";
+    libroCarga.socioPrestado = "No posee Socio";
+    guardar("Libro" + libroCarga.id, JSON.stringify(libroCarga));
+}
+
+const guardarSocio = (socioCarga) => {
+    socioCarga.libroPrestado = "No posee libro";
+    guardar("Socio" + socioCarga.id, JSON.stringify(socioCarga));
+}
+
+const multarSocio = (socioMulta) => {
+    socioMulta.multas = "$100";
+    socioMulta.libroPrestado = "No posee libro por multa";
+    guardar("Socio" + socioMulta.id, JSON.stringify(socioMulta));
+}
+
+//---Funcion Principal que usa el evento para devolver el libro
+const devolverLibro = () => {
+    let infoLibro = document.getElementById("inputMirar").value;
+    for (const Libro of Libros){
+        let traerTitulo = JSON.parse(localStorage.getItem("Libro" + Libro.id));
+        infoLibro === traerTitulo.titulo && guardarLibro(traerTitulo);
         
+    }
+    for (const Socio of Socios){
+        let traerSocio = JSON.parse(localStorage.getItem("Socio" + Socio.id));
+        infoLibro === traerSocio.libroPrestado && guardarSocio(traerSocio);
     }
     clearList();
 }
 
+//------Funcion Principal que usa el evento para multar un libro
+const multarLibro = () => {
+    let infoLibro = document.getElementById("inputMirar").value;
+    for (const Socio of Socios){
+        let traerSocio = JSON.parse(localStorage.getItem("Socio" + Socio.id));
+        infoLibro === traerSocio.libroPrestado && multarSocio(traerSocio);
+    }
+    for (const Libro of Libros){
+        let traerTitulo = JSON.parse(localStorage.getItem("Libro" + Libro.id));
+        infoLibro === traerTitulo.titulo && guardarLibro(traerTitulo);
+        
+    }
+}
+
+//Función para limpiar la lista de libros así no se acumulan
 const clearList = () => {
     const borrarLibro = document.querySelector(".consulta_style");
     while (borrarLibro.firstChild != null) {
-      borrarLibro.removeChild(borrarLibro.firstChild);
+        borrarLibro.removeChild(borrarLibro.firstChild);
     }
-  };
+};
 
+bringBooks();
 
 inputLibroPrestado.addEventListener("click", (e) => {
     e.preventDefault();
@@ -87,10 +123,42 @@ inputLibroPrestado.addEventListener("click", (e) => {
 
 inputDevolver.addEventListener("click", (e) => {
     e.preventDefault();
-    devolverLibro();
+    swal({
+        title: "Bliblioteca Pipo",
+        text: "¿Está seguro de devolver este libro?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("El libro se a devuelto correctamente!", {
+            icon: "success",
+          });
+          devolverLibro();
+        } else {
+          swal("Se canceló la operación");
+        }
+      });
 });
 
 inputMultar.addEventListener("click", (e) => {
     e.preventDefault();
-    multarLibro();
+    swal({
+        title: "Bliblioteca Pipo",
+        text: "¿Está seguro de multar al usuario que posee este libro?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("El socio ha sido multado correctamente!", {
+            icon: "success",
+          });
+          multarLibro();
+        } else {
+          swal("Se canceló la operación");
+        }
+      });
 })
