@@ -7,9 +7,6 @@ const button = document.querySelector(".form_button");
 const guardarSocio = (clave, valor) => {
     localStorage.setItem(clave, valor);
 };
-for (const Socio of Socios) {
-    guardarSocio("Socio" + Socio.id, JSON.stringify(Socio));
-}
 
 //------Funcion para guardar el socio------
 let agregarSocio = () => {
@@ -21,11 +18,10 @@ let agregarSocio = () => {
     let telefono = document.getElementById("telefono").value;
     let domicilio = document.getElementById("domicilio").value;
     let observaciones = document.getElementById("observaciones").value;
-    Socios.push(new Socio(id++, nombre, apellido, dni, email, telefono, domicilio, observaciones, "", ""));
+    Socios.push(new Socio(id, nombre, apellido, dni, email, telefono, domicilio, observaciones, "No posee libro", "No posee multas"));
     console.log(Socios);
-    for (const Socio of Socios) {
-        guardarSocio("Socio" + Socio.id, JSON.stringify(Socio));
-    }
+    guardarSocio("Socio" + id, JSON.stringify(Socios[id]));
+    
     swal("Biblioteca Pipo", "Se cargó el socio correctamente", "success");
     
 }

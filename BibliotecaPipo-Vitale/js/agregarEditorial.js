@@ -7,19 +7,15 @@ const button = document.querySelector(".form_button");
 const guardarEditorial = (clave, valor) => {
     localStorage.setItem(clave, valor);
 };
-for (const Editorial of Editoriales) {
-    guardarEditorial("Editorial" + Editorial.id, JSON.stringify(Editorial));
-}
+
 
 //------Variable para guardar la editorial
 let agregarEditorial = () => {
     let id = Editoriales.length;
     let nombre = document.getElementById("nombre").value;
-    Editoriales.push(new Editorial(id++, nombre));
+    Editoriales.push(new Editorial(id, nombre));
     console.log(Editoriales);
-    for (const Editorial of Editoriales) {
-        guardarEditorial("Editorial" + Editorial.id, JSON.stringify(Editorial));
-    }
+    guardarEditorial("Editorial" + id, JSON.stringify(Editoriales[id]));
     swal("Biblioteca Pipo", "Se cargó la editorial correctamente", "success");
 }
 

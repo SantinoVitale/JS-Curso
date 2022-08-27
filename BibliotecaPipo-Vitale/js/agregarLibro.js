@@ -7,9 +7,7 @@ const button = document.querySelector(".form_button");
 const guardarLibro = (clave, valor) => {
     localStorage.setItem(clave, valor);
 };
-for (const Libro of Libros) {
-    guardarLibro("Libro" + Libro.id, JSON.stringify(Libro));
-}
+
 
 //------Variable para guardar el libro------
 let agregarLibro = () => {
@@ -22,11 +20,9 @@ let agregarLibro = () => {
     let img = document.getElementById("img").value;
     let pasillo = document.getElementById("pasillo").value;
     let estanteria = document.getElementById("estanteria").value;
-    Libros.push(new Libro(id, titulo, autor, editorial, isbn, sinopsis, img, pasillo, estanteria, false));
+    Libros.push(new Libro(id, titulo, autor, editorial, isbn, sinopsis, img, pasillo, estanteria, false, "No está prestado", "No está prestado"));
     console.log(Libros);
-    for (const Libro of Libros) {
-        guardarLibro("Libro" + Libro.id, JSON.stringify(Libro));
-    }
+    guardarLibro("Libro" + id, JSON.stringify(Libros[id]));
     swal("Biblioteca Pipo", "Se cargó el libro correctamente", "success");
 }
 

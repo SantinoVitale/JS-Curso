@@ -6,7 +6,7 @@ export var fechaDevolucion = (fecha.getDate() + "/" + +(fecha.getMonth()+ 2) +"/
 
 // Libros
 export class Libro { // Creacion de la clase Libro
-    constructor(id, titulo, autor, editorial, isbn, sinopsis, img, pasillo, estanteria, estado, fechaDevolucion) {
+    constructor(id, titulo, autor, editorial, isbn, sinopsis, img, pasillo, estanteria, estado, socioPrestado, fechaDevolucion) {
         this.id = +(id)
         this.titulo = titulo
         this.autor = autor
@@ -17,6 +17,7 @@ export class Libro { // Creacion de la clase Libro
         this.pasillo = pasillo
         this.estanteria = estanteria
         this.estado = estado
+        this.socioPrestado = socioPrestado
         this.fechaDevolucion = fechaDevolucion
     }
 }
