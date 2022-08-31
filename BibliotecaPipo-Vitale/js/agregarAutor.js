@@ -7,9 +7,6 @@ const button = document.querySelector(".form_button");
 const guardarAutor = (clave, valor) => {
     localStorage.setItem(clave, valor);
 };
-for (const Autor of Autores) {
-    guardarAutor("Autor" + Autor.id, JSON.stringify(Autor));
-}
 
 //------Funcion para guardar el autor------
 let agregarAutor = () => {
@@ -18,9 +15,8 @@ let agregarAutor = () => {
     let apellido = document.getElementById("apellido").value;
     Autores.push(new Autor(id, nombre, apellido));
     console.log(Autores);
-    for (const Autor of Autores) {
-        guardarAutor("Autor" + Autor.id, JSON.stringify(Autor));
-    }
+    guardarAutor("Autor" + id, JSON.stringify(Autores[id]));
+
     swal("Biblioteca Pipo", "Se cargó el autor correctamente", "success");
 }
 
