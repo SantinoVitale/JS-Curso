@@ -1,10 +1,8 @@
-// Fecha
-
+// Libros
 export var fecha = new Date()
 export var fechaDevolucion = (fecha.getDate() + "/" + +(fecha.getMonth()+ 2) +"/"+ fecha.getFullYear())
+// Hacer FECHA EN ARRAY Y VARIABLE
 
-
-// Libros
 export class Libro { // Creacion de la clase Libro
     constructor(id, titulo, autor, editorial, isbn, sinopsis, img, pasillo, estanteria, estado, socioPrestado, fechaDevolucion) {
         this.id = +(id)
