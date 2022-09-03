@@ -1,32 +1,15 @@
 import { Autores, Editoriales, Libros, Socios} from "./DB.js"
-fetch("./DB.json")
+fetch("../js/DB.json")
 .then(res => res.json())
-.then(data => console.log(data)) 
+.then(data => setTimeout(() => {
+    console.log(data.Libros, data.Autores, data.Socios, data.Editoriales)
+    console.log("Se cargaron los datos correctamente correctamente")
+    localStorage.getItem("Libro0") || subirLibros()
+    localStorage.getItem("Editorial0") || subirEditoriales()
+    localStorage.getItem("Autor0") || subirAutores()
+    localStorage.getItem("Socio0") || subirSocios()
+}, 3000)) 
 
-const pedirDatos = () => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(Libros, Autores, Socios, Editoriales)
-        }, 3000)
-    })
-}
-const renderLibros = (arr) => {
-    console.log(arr)
-}
-
-pedirDatos()
-    .then(() => {
-        renderLibros(Libros)
-        renderLibros(Autores)
-        renderLibros(Socios)
-        renderLibros(Editoriales)
-        console.log("Se cargaron los datos correctamente correctamente")
-        localStorage.getItem("Libro0") || subirLibros()
-        localStorage.getItem("Editorial0") || subirEditoriales()
-        localStorage.getItem("Autor0") || subirAutores()
-        localStorage.getItem("Socio0") || subirSocios()
-        
-    })
 const subirLibros = () =>{
     for (const Libro of Libros) {
         guardarDatos("Libro" + Libro.id, JSON.stringify(Libro));
