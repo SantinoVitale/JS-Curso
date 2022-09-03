@@ -1,5 +1,7 @@
 import { Autores, Editoriales, Libros, Socios} from "./DB.js"
-
+fetch("./DB.json")
+.then(res => res.json())
+.then(data => console.log(data)) 
 
 const pedirDatos = () => {
     return new Promise((resolve, reject) => {
