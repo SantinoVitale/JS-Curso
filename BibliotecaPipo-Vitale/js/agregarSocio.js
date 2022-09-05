@@ -22,7 +22,7 @@ let agregarSocio = () => {
     console.log(Socios);
     guardarSocio("Socio" + id, JSON.stringify(Socios[id]));
     
-    swal("Biblioteca Pipo", "Se cargó el socio correctamente", "success");
+    setTimeout(() => {swal("Biblioteca Pipo", "Se cargó el socio correctamente", "success")}, 500)
     
 }
 

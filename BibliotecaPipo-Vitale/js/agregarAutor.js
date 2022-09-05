@@ -17,7 +17,7 @@ let agregarAutor = () => {
     console.log(Autores);
     guardarAutor("Autor" + id, JSON.stringify(Autores[id]));
 
-    swal("Biblioteca Pipo", "Se cargó el autor correctamente", "success");
+    setTimeout(() => {swal("Biblioteca Pipo", "Se cargó el autor correctamente", "success");}, 500);
 }
 
 button.addEventListener("click", (e) => {

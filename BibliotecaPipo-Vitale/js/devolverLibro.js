@@ -118,7 +118,7 @@ bringBooks();
 
 inputLibroPrestado.addEventListener("click", (e) => {
     e.preventDefault();
-    mirarLibro();
+    setTimeout(() => {mirarLibro()},200)
 });
 
 inputDevolver.addEventListener("click", (e) => {
@@ -132,9 +132,9 @@ inputDevolver.addEventListener("click", (e) => {
       })
       .then((willDelete) => {
         if (willDelete) {
-          swal("El libro se a devuelto correctamente!", {
+            setTimeout(() => {swal("El libro se a devuelto correctamente!", {
             icon: "success",
-          });
+          })}, 500)
           devolverLibro();
         } else {
           swal("Se canceló la operación");
@@ -153,9 +153,9 @@ inputMultar.addEventListener("click", (e) => {
       })
       .then((willDelete) => {
         if (willDelete) {
-          swal("El socio ha sido multado correctamente!", {
+            setTimeout(() => {swal("El socio ha sido multado correctamente!", {
             icon: "success",
-          });
+          })},500)
           multarLibro();
         } else {
           swal("Se canceló la operación");

@@ -23,7 +23,7 @@ let agregarLibro = () => {
     Libros.push(new Libro(id, titulo, autor, editorial, isbn, sinopsis, img, pasillo, estanteria, false, "No está prestado", "No está prestado"));
     console.log(Libros);
     guardarLibro("Libro" + id, JSON.stringify(Libros[id]));
-    swal("Biblioteca Pipo", "Se cargó el libro correctamente", "success");
+    setTimeout(() => {swal("Biblioteca Pipo", "Se cargó el libro correctamente", "success")},500)
 }
 
 

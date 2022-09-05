@@ -75,12 +75,12 @@ inputPrestar.addEventListener("click", (e) => {
       })
       .then((willDelete) => {
         if (willDelete) {
-          swal("El libro se a prestado correctamente!", {
+            setTimeout(() => {swal("El libro se a prestado correctamente!", {
             icon: "success",
-          });
+          })}, 500)
           prestarLibro();
         } else {
-          swal("Se canceló la operación");
+            swal("Se canceló la operación")
         }
       });
 });

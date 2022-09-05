@@ -16,7 +16,7 @@ let agregarEditorial = () => {
     Editoriales.push(new Editorial(id, nombre));
     console.log(Editoriales);
     guardarEditorial("Editorial" + id, JSON.stringify(Editoriales[id]));
-    swal("Biblioteca Pipo", "Se cargó la editorial correctamente", "success");
+    setTimeout(() => { swal("Biblioteca Pipo", "Se cargó la editorial correctamente", "success");}, 500);
 }
 
 button.addEventListener("click", (e) => {
