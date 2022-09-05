@@ -1,7 +1,9 @@
 import { Socios } from "./DB.js";
 
+//------Variables------
 let input = document.querySelector(".consulta_style-search");
 
+//------Funcion para que muestre los socios-------
 const showSocios = (socios) => {
   clearList();
   for (const socio of socios) {
@@ -25,6 +27,7 @@ const showSocios = (socios) => {
   }
 };
 
+//------Funcion para buscar el socio------
 const buscarSocio = (e) => {
   let value = e.target.value;
 
@@ -43,6 +46,7 @@ const buscarSocio = (e) => {
   }
 };
 
+//------Funcion por si no hay socios que coincidan con la busqueda------
 const noSocios = () => {
   const socios = document.querySelector("#Socios");
   const error = document.createElement("h1");
@@ -52,6 +56,7 @@ const noSocios = () => {
   socios.append(error);
 };
 
+//------Funcion para limpiar la lista de socios------
 const clearList = () => {
   const socios = document.querySelector("#Socios");
   while (socios.firstChild) {

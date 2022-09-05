@@ -4,6 +4,7 @@ fetch("../js/DB.json")
 .then(data => setTimeout(() => {
     console.log(data.Libros, data.Autores, data.Socios, data.Editoriales)
     console.log("Se cargaron los datos correctamente correctamente")
+//------Revisa mediante el operador avanzado para ver si no es null para luego ejecutar la funcion para subirlo------
     localStorage.getItem("Libro0") || subirLibros()
     localStorage.getItem("Editorial0") || subirEditoriales()
     localStorage.getItem("Autor0") || subirAutores()
