@@ -3,10 +3,19 @@ import { Libros } from "./DB.js";
 //------Variables------
 let input = document.querySelector(".consulta_style-search");
 
-//------Funcion para que muestre los libros-------
-const showBooks = (books) => {
+const bringBooks = () => {
   clearList();
-  for (const book of books) {
+  for (let i = 0; i < localStorage.length; i++) {
+      let traerTitulos = JSON.parse(localStorage.getItem("Libro" + i));
+      if (traerTitulos != null){
+        showBooks(traerTitulos);
+      }
+  }
+}
+
+//------Funcion para que muestre los libros-------
+const showBooks = (book) => {
+  
     let consultaStyle = document.querySelector(".consulta_style-orden");
     let contenedor = document.createElement("div");
     contenedor.innerHTML = `<div class="consulta_style-fieldset">
@@ -23,25 +32,34 @@ const showBooks = (books) => {
                 </div>`;
     consultaStyle.appendChild(contenedor);
   }
-  if (books.length === 0) {
-    noBooks();
-  }
-};
+  
+
 
 //------Funcion para buscar el libro------
 const buscarLibro = (e) => {
   let value = e.target.value;
+  let Titulos = []
 
+  for (let i = 0; i < localStorage.length; i++) {
+    let traerTitulos = JSON.parse(localStorage.getItem("Libro" + i));
+    if (traerTitulos != null){
+      Titulos.push(traerTitulos)
+    }
+    
+  }
   if (value && value.trim().length > 0) {
     value = value.trim();
-
-    showBooks(
-      Libros.filter((book) => {
-        return book.titulo.includes(value);
+      Titulos.filter((book) => {
+        if (book.titulo.includes(value) === true){
+          clearList();
+          showBooks(book);
+        }
+        console.log(Titulos.filter(book))
+ 
       })
-    );
+      
   } else if(value.trim().length == 0){
-    showBooks(Libros)
+    bringBooks();
   }else {
     clearList();
   }
@@ -66,4 +84,4 @@ const clearList = () => {
 };
 
 input.addEventListener("input", buscarLibro);
-showBooks(Libros);
+bringBooks();

@@ -3,9 +3,18 @@ import { Editorial, Editoriales } from "./DB.js";
 //------Variables------
 let input = document.querySelector(".consulta_style-search");
 
+const bringEditoriales = () => {
+  for (let i = 0; i < localStorage.length; i++) {
+      let traerEditoriales = JSON.parse(localStorage.getItem("Editorial" + i));
+      if (traerEditoriales != null){
+        showEditoriales(traerEditoriales);
+      }
+      
+  }
+}
+
 //------Funcion para que muestre las editoriales-------
 const showEditoriales = (editoriales) => {
-  clearList();
   for (const editorial of editoriales) {
     let consultaStyle = document.querySelector(".consulta_style-orden");
     let contenedor = document.createElement("div");
