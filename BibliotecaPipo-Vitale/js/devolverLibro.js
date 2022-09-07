@@ -1,9 +1,3 @@
-import {
-    Libro,
-    Libros,
-    Socios
-} from "./DB.js";
-
 //------Variables------
 let inputLibroPrestado = document.querySelector(".form_button");
 let inputDevolver = document.querySelector("#Devolver");
@@ -16,17 +10,27 @@ const bringBooks = () => {
         contenedor.innerHTML = `<option> ${traerTitulo.titulo} </option>`;
         document.querySelector("#libro_prestado").appendChild(contenedor);
     }
-    for (const Libro of Libros) {
-        let traerTitulos = JSON.parse(localStorage.getItem("Libro" + Libro.id));
-        traerTitulos.estado === true && showBooks(traerTitulos);
+    for (let i = 0; i < localStorage.length; i++) {
+        let traerTitulos = JSON.parse(localStorage.getItem("Libro" + i));
+        if(traerTitulos != null){
+            traerTitulos.estado === true && showBooks(traerTitulos);
+        }
+        
     }
     
 }
 
 //------Mostrar los libros cuando haces click en "Mirar Libro"------
 const mirarLibro = () => {
+    let Titulos = []
+    for (let i = 0; i < localStorage.length; i++) {
+        let traerTitulos = JSON.parse(localStorage.getItem("Libro" + i));
+        if (traerTitulos != null) {
+          Titulos.push(traerTitulos)
+        }
+      }
     let infoLibro = document.getElementById("inputMirar").value;
-    Libros.forEach(libro => {
+    Titulos.forEach(libro => {
         if (infoLibro === libro.titulo) {
             const infoLibroNew = JSON.parse(localStorage.getItem("Libro" + libro.id));
             let contenedorStyle = document.querySelector("#muestraLibro");
@@ -60,6 +64,7 @@ const guardar = (clave, valor) => {
 
 //------Funciones para guardar los datos del Socio y del Libro------
 const guardarLibro = (libroCarga) => {
+    
     libroCarga.estado = false;
     libroCarga.fechaDevolucion = "No posee libro";
     libroCarga.socioPrestado = "No posee Socio";
@@ -80,14 +85,20 @@ const multarSocio = (socioMulta) => {
 //---Funcion Principal que usa el evento para devolver el libro
 const devolverLibro = () => {
     let infoLibro = document.getElementById("inputMirar").value;
-    for (const Libro of Libros){
-        let traerTitulo = JSON.parse(localStorage.getItem("Libro" + Libro.id));
-        infoLibro === traerTitulo.titulo && guardarLibro(traerTitulo);
+    for (let i = 0; i < localStorage.length; i++){
+        let traerTitulo = JSON.parse(localStorage.getItem("Libro" + i));
+        if (traerTitulo != null){
+            infoLibro === traerTitulo.titulo && guardarLibro(traerTitulo);
+        }
+        
         
     }
-    for (const Socio of Socios){
-        let traerSocio = JSON.parse(localStorage.getItem("Socio" + Socio.id));
-        infoLibro === traerSocio.libroPrestado && guardarSocio(traerSocio);
+    for (let i = 0; i < localStorage.length; i++){
+        let traerSocio = JSON.parse(localStorage.getItem("Socio" + i));
+        if (traerSocio != null){
+            infoLibro === traerSocio.libroPrestado && guardarSocio(traerSocio);
+        }
+        
     }
     clearList();
 }
@@ -95,13 +106,19 @@ const devolverLibro = () => {
 //------Funcion Principal que usa el evento para multar un libro
 const multarLibro = () => {
     let infoLibro = document.getElementById("inputMirar").value;
-    for (const Socio of Socios){
-        let traerSocio = JSON.parse(localStorage.getItem("Socio" + Socio.id));
-        infoLibro === traerSocio.libroPrestado && multarSocio(traerSocio);
+    for (let i = 0; i < localStorage.length; i++){
+        let traerSocio = JSON.parse(localStorage.getItem("Socio" + i));
+        if (traerSocio != null){
+            infoLibro === traerSocio.libroPrestado && multarSocio(traerSocio);
+        }
+        
     }
-    for (const Libro of Libros){
-        let traerTitulo = JSON.parse(localStorage.getItem("Libro" + Libro.id));
-        infoLibro === traerTitulo.titulo && guardarLibro(traerTitulo);
+    for (let i = 0; i < localStorage.length; i++){
+        let traerTitulo = JSON.parse(localStorage.getItem("Libro" + i));
+        if (traerTitulo != null){
+            infoLibro === traerTitulo.titulo && guardarLibro(traerTitulo);
+        }
+        
         
     }
 }

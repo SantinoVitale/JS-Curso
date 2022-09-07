@@ -1,66 +1,67 @@
-import { Libros } from "./DB.js";
-
 //------Variables------
 let input = document.querySelector(".consulta_style-search");
 
+//------Funcion para traer los Libros del localstorage------
 const bringBooks = () => {
   clearList();
   for (let i = 0; i < localStorage.length; i++) {
-      let traerTitulos = JSON.parse(localStorage.getItem("Libro" + i));
-      if (traerTitulos != null){
-        showBooks(traerTitulos);
-      }
+    let traerTitulos = JSON.parse(localStorage.getItem("Libro" + i));
+    if (traerTitulos != null) {
+      showBooks(traerTitulos);
+    }
   }
 }
 
 //------Funcion para que muestre los libros-------
 const showBooks = (book) => {
-  
-    let consultaStyle = document.querySelector(".consulta_style-orden");
-    let contenedor = document.createElement("div");
-    contenedor.innerHTML = `<div class="consulta_style-fieldset">
+
+  let consultaStyle = document.querySelector(".consulta_style-orden");
+  let contenedor = document.createElement("div");
+  contenedor.innerHTML = `<div class="consulta_style-fieldset">
             <img src='${book.img}' width='150' alt='Imagen Libro'>
                 <ul>
-                    <li>  ${book.titulo} </li>
-                    <li>  ${book.autor} </li>
-                    <li>  ${book.editorial} </li>
-                    <li>  ${book.isbn} </li>
-                    <li>  ${book.sinopsis} </li>
-                    <li>  ${book.pasillo} </li>
-                    <li>  ${book.estanteria} </li>
+                    <li>Título: ${book.titulo} </li>
+                    <li>Autor: ${book.autor} </li>
+                    <li>Editorial: ${book.editorial} </li>
+                    <li>ISBN: ${book.isbn} </li>
+                    <li>Sinópsis: ${book.sinopsis} </li>
+                    <li>Pasillo: ${book.pasillo} </li>
+                    <li>Estanteria: ${book.estanteria} </li>
                 </ul>
                 </div>`;
-    consultaStyle.appendChild(contenedor);
-  }
-  
+  consultaStyle.appendChild(contenedor);
+}
+
 
 
 //------Funcion para buscar el libro------
 const buscarLibro = (e) => {
   let value = e.target.value;
   let Titulos = []
-
   for (let i = 0; i < localStorage.length; i++) {
     let traerTitulos = JSON.parse(localStorage.getItem("Libro" + i));
-    if (traerTitulos != null){
+    if (traerTitulos != null) {
       Titulos.push(traerTitulos)
     }
-    
   }
+
   if (value && value.trim().length > 0) {
     value = value.trim();
-      Titulos.filter((book) => {
-        if (book.titulo.includes(value) === true){
-          clearList();
-          showBooks(book);
-        }
-        console.log(Titulos.filter(book))
- 
-      })
-      
-  } else if(value.trim().length == 0){
+    //------Se fija si lo ingresado filtra bien y en caso que no aplica tira mensaje de error mediante una funcion------
+    let filtro = Titulos.filter(Titulos => Titulos.titulo.includes(value))
+    if (filtro != "") {
+      clearList();
+      filtro.forEach(array => {
+        showBooks(array)
+      });
+    } else {
+      clearList();
+      noBooks();
+    }
+
+  } else if (value.trim().length == 0) {
     bringBooks();
-  }else {
+  } else {
     clearList();
   }
 };

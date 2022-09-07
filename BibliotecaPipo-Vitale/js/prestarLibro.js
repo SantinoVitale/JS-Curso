@@ -1,13 +1,16 @@
-import { fechaDevolucion, Libros, Socios } from "./DB.js";
+import { fechaDevolucion } from "./DB.js";
 
 //------Variables------
 const inputPrestar = document.querySelector(".form_button");
 
 //------Funciones para traer los libros y los Socios------
 const bringBooks = () => {
-    for (const Libro of Libros) {
-        let traerTitulos = JSON.parse(localStorage.getItem("Libro" + Libro.id));
-        showBooks(traerTitulos);
+    for (let i = 0; i < localStorage.length; i++) {
+        let traerTitulos = JSON.parse(localStorage.getItem("Libro" + i));
+        if (traerTitulos != null){
+            showBooks(traerTitulos);
+        }
+        
     }
 }
 
@@ -18,9 +21,12 @@ const showBooks = (traerTitulo) => {
 }
 
 const bringSocios = () => {
-    for (const Socio of Socios){
-        let traerSocio = JSON.parse(localStorage.getItem("Socio" + Socio.id));
-        showSocios(traerSocio);
+    for (let i = 0; i < localStorage.length; i++){
+        let traerSocio = JSON.parse(localStorage.getItem("Socio" + i));
+        if (traerSocio != null){
+            showSocios(traerSocio);
+        }
+        
     }
 }
 
@@ -49,13 +55,19 @@ const prestarLibro = () =>{
         socioCarga.libroPrestado = libroPrestado;
         guardar("Socio" + socioCarga.id, JSON.stringify(socioCarga));
     }
-    for (const Libro of Libros){
-        let traerTitulo = JSON.parse(localStorage.getItem("Libro" + Libro.id));
-        libroPrestado == traerTitulo.titulo && subirLibro(traerTitulo);
+    for (let i = 0; i < localStorage.length; i++){
+        let traerTitulo = JSON.parse(localStorage.getItem("Libro" + i));
+        if(traerTitulo != null){
+            libroPrestado == traerTitulo.titulo && subirLibro(traerTitulo);
+        }
+        
     }
-    for (const Socio of Socios){
-        let traerSocio = JSON.parse(localStorage.getItem("Socio" + Socio.id));
-        socioPrestado == traerSocio.nombre && subirSocio(traerSocio);
+    for (let i = 0; i < localStorage.length; i++){
+        let traerSocio = JSON.parse(localStorage.getItem("Socio" + i));
+        if (traerSocio != null){
+            socioPrestado == traerSocio.nombre && subirSocio(traerSocio);
+        }
+        
     }
     
     

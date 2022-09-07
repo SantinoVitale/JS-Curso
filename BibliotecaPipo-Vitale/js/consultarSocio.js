@@ -1,47 +1,63 @@
-import { Socios } from "./DB.js";
-
 //------Variables------
 let input = document.querySelector(".consulta_style-search");
 
-//------Funcion para que muestre los socios-------
-const showSocios = (socios) => {
+//------Funcion para traer los Socios del localstorage------
+const bringSocios = () => {
   clearList();
-  for (const socio of socios) {
-    let consultaStyle = document.querySelector(".consulta_style-orden");
-    let contenedor = document.createElement("div");
-    contenedor.innerHTML = `<div class="consulta_style-fieldset">
+  for (let i = 0; i < localStorage.length; i++) {
+    let traerSocios = JSON.parse(localStorage.getItem("Socio" + i));
+    if (traerSocios != null) {
+      showSocios(traerSocios);
+    }
+  }
+}
+
+//------Funcion para que muestre los socios-------
+const showSocios = (socio) => {
+  let consultaStyle = document.querySelector(".consulta_style-orden");
+  let contenedor = document.createElement("div");
+  contenedor.innerHTML = `<div class="consulta_style-fieldset">
                 <ul>
-                    <li>  ${socio.nombre} </li>
-                    <li>  ${socio.apellido} </li>
-                    <li>  ${socio.dni} </li>
-                    <li>  ${socio.email} </li>
-                    <li>  ${socio.telefono} </li>
-                    <li>  ${socio.domicilio} </li>
-                    <li>  ${socio.observaciones} </li>
+                    <li>Nombre: ${socio.nombre} </li>
+                    <li>Apellido: ${socio.apellido} </li>
+                    <li>DNI: ${socio.dni} </li>
+                    <li>Email: ${socio.email} </li>
+                    <li>Teléfono: ${socio.telefono} </li>
+                    <li>Domicilio: ${socio.domicilio} </li>
+                    <li>Observaciones: ${socio.observaciones} </li>
                 </ul>
                 </div>`;
-    consultaStyle.appendChild(contenedor);
-  }
-  if (socios.length === 0) {
-    noSocios();
-  }
-};
+  consultaStyle.appendChild(contenedor);
+}
 
 //------Funcion para buscar el socio------
 const buscarSocio = (e) => {
   let value = e.target.value;
+  let Socio = []
+  for (let i = 0; i < localStorage.length; i++) {
+    let traerSocios = JSON.parse(localStorage.getItem("Socio" + i));
+    if (traerSocios != null) {
+      Socio.push(traerSocios)
+    }
+  }
 
   if (value && value.trim().length > 0) {
     value = value.trim();
+    //------Se fija si lo ingresado filtra bien y en caso que no aplica tira mensaje de error mediante una funcion------
+    let filtro = Socio.filter(Socios => Socios.nombre.includes(value))
+    if (filtro != "") {
+      clearList();
+      filtro.forEach(array => {
+        showSocios(array)
+      });
+    } else {
+      clearList();
+      noSocios();
+    }
 
-    showSocios(
-      Socios.filter((socio) => {
-        return socio.nombre.includes(value);
-      })
-    );
-  } else if(value.trim().length == 0){
-    showSocios(Socios)
-  }else {
+  } else if (value.trim().length == 0) {
+    bringSocios();
+  } else {
     clearList();
   }
 };
@@ -65,4 +81,4 @@ const clearList = () => {
 };
 
 input.addEventListener("input", buscarSocio);
-showSocios(Socios);
+bringSocios();

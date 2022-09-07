@@ -1,8 +1,7 @@
-import { Editorial, Editoriales } from "./DB.js";
-
 //------Variables------
 let input = document.querySelector(".consulta_style-search");
 
+//------Funcion para traer los Editoriales del localstorage------
 const bringEditoriales = () => {
   for (let i = 0; i < localStorage.length; i++) {
       let traerEditoriales = JSON.parse(localStorage.getItem("Editorial" + i));
@@ -15,35 +14,42 @@ const bringEditoriales = () => {
 
 //------Funcion para que muestre las editoriales-------
 const showEditoriales = (editoriales) => {
-  for (const editorial of editoriales) {
     let consultaStyle = document.querySelector(".consulta_style-orden");
     let contenedor = document.createElement("div");
     contenedor.innerHTML = `<div class="consulta_style-fieldset">
                 <ul>
-                    <li>  ${editorial.nombre} </li>
+                    <li>Nombre: ${editoriales.nombre} </li>
                 </ul>
                 </div>`;
     consultaStyle.appendChild(contenedor);
-  }
-  if (editoriales.length === 0) {
-    noEditoriales();
-  }
-};
+}
 
 //------Funcion para buscar la editorial------
 const buscarEditorial = (e) => {
   let value = e.target.value;
-
+  let Editorial = []
+  for (let i = 0; i < localStorage.length; i++) {
+    let traerEditoriales = JSON.parse(localStorage.getItem("Editorial" + i));
+    if (traerEditoriales != null) {
+      Editorial.push(traerEditoriales)
+    }
+  }
   if (value && value.trim().length > 0) {
     value = value.trim();
-
-    showEditoriales(
-      Editoriales.filter((editorial) => {
-        return editorial.nombre.includes(value);
-      })
-    );
+    //------Se fija si lo ingresado filtra bien y en caso que no aplica tira mensaje de error mediante una funcion------
+    let filtro = Editorial.filter(Editorial =>  Editorial.nombre.includes(value))
+    if (filtro != "") {
+      clearList();
+      filtro.forEach(array => {
+        showEditoriales(array)
+      });
+    } else {
+      clearList();
+      noEditoriales();
+    }
   } else if(value.trim().length == 0){
-    showEditoriales(Editoriales)
+    clearList();
+    bringEditoriales();
   }else {
     clearList();
   }
@@ -68,4 +74,4 @@ const clearList = () => {
 };
 
 input.addEventListener("input", buscarEditorial);
-showEditoriales(Editoriales);
+bringEditoriales();

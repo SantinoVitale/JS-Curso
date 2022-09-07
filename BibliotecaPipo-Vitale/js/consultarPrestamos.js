@@ -1,46 +1,59 @@
-import {
-    Libros
-} from "./DB.js";
-
 let input = document.querySelector(".consulta_style-search");
 
-const showBooks = (books) => {
+//------Funcion para traer los Prestamos del localstorage------
+const bringBooks = () => {
     clearList();
-    for (const book of books) {
-        let traerTitulo = JSON.parse(localStorage.getItem("Libro" + book.id))
-        if (traerTitulo.estado == true) {
-            let consultaStyle = document.querySelector(".consulta_style-orden");
-            let contenedor = document.createElement("div");
-            contenedor.innerHTML = `<div class="consulta_style-fieldset">
-            <img src='${traerTitulo.img}' width='150' alt='Imagen Libro'>
+    for (let i = 0; i < localStorage.length; i++) {
+        let traerTitulos = JSON.parse(localStorage.getItem("Libro" + i));
+        if (traerTitulos != null && traerTitulos.estado == true) {
+            showBooks(traerTitulos);
+        }
+    }
+}
+
+
+const showBooks = (book) => {
+
+    let consultaStyle = document.querySelector(".consulta_style-orden");
+    let contenedor = document.createElement("div");
+    contenedor.innerHTML = `<div class="consulta_style-fieldset">
+            <img src='${book.img}' width='150' alt='Imagen Libro'>
                 <ul>
-                    <li>Titulo: ${traerTitulo.titulo} </li>
-                    <li>Socio Prestado: ${traerTitulo.socioPrestado} </li>
-                    <li>Fecha de devolucion: ${traerTitulo.fechaDevolucion} </li>
+                    <li>Titulo: ${book.titulo} </li>
+                    <li>Socio Prestado: ${book.socioPrestado} </li>
+                    <li>Fecha de devolucion: ${book.fechaDevolucion} </li>
                 </ul>
                 </div>`;
-            consultaStyle.appendChild(contenedor);
-        }
+    consultaStyle.appendChild(contenedor);
 
-    }
-    if (books.length === 0) {
-        noBooks();
-    }
-};
+}
 
 const buscarLibro = (e) => {
     let value = e.target.value;
+    let Titulos = []
+    for (let i = 0; i < localStorage.length; i++) {
+        let traerTitulos = JSON.parse(localStorage.getItem("Libro" + i));
+        if (traerTitulos != null && traerTitulos.estado == true) {
+            Titulos.push(traerTitulos)
+        }
+    }
 
     if (value && value.trim().length > 0) {
         value = value.trim();
-
-        showBooks(
-            Libros.filter((book) => {
-                return book.titulo.includes(value);
-            })
-        );
+        //------Se fija si lo ingresado filtra bien y en caso que no aplica tira mensaje de error mediante una funcion------
+        let filtro = Titulos.filter(Titulos => Titulos.titulo.includes(value))
+        if (filtro != "") {
+            clearList();
+            filtro.forEach(array => {
+                showBooks(array)
+            });
+        } else {
+            clearList();
+            noBooks();
+        }
     } else if (value.trim().length == 0) {
-        showBooks(Libros)
+        clearList();
+        bringBooks();
     } else {
         clearList();
     }
@@ -63,4 +76,4 @@ const clearList = () => {
 };
 
 input.addEventListener("input", buscarLibro);
-showBooks(Libros);
+bringBooks();

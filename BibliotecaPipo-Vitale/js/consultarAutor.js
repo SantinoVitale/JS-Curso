@@ -1,42 +1,59 @@
-import { Autores } from "./DB.js";
-
 //------Variables------
 let input = document.querySelector(".consulta_style-search");
 
+//------Funcion para traer los Autores del localstorage------
+const bringAutores = () => {
+  clearList();
+  for (let i = 0; i < localStorage.length; i++) {
+    let traerAutor = JSON.parse(localStorage.getItem("Autor" + i));
+    if (traerAutor != null) {
+      showAutores(traerAutor);
+    }
+  }
+}
+
 //------Funcion para que muestre los autores-------
 const showAutores = (autores) => {
-  clearList();
-  for (const autor of autores) {
     let consultaStyle = document.querySelector(".consulta_style-orden");
     let contenedor = document.createElement("div");
     contenedor.innerHTML = `<div class="consulta_style-fieldset">
                 <ul>
-                    <li>  ${autor.nombre} </li>
-                    <li>  ${autor.apellido} </li>
+                    <li>Nombre: ${autores.nombre} </li>
+                    <li>Apellido: ${autores.apellido} </li>
                 </ul>
                 </div>`;
     consultaStyle.appendChild(contenedor);
   }
-  if (autores.length === 0) {
-    noAutores();
-  }
-};
+
 
 
 //------Funcion para buscar el autor------
 const buscarAutor = (e) => {
   let value = e.target.value;
+  let Autor = []
+  for (let i = 0; i < localStorage.length; i++) {
+    let traerAutor = JSON.parse(localStorage.getItem("Autor" + i));
+    if (traerAutor != null) {
+      Autor.push(traerAutor)
+    }
+  }
 
   if (value && value.trim().length > 0) {
     value = value.trim();
-
-    showAutores(
-      Autores.filter((autor) => {
-        return autor.nombre.includes(value);
-      })
-    );
+    //------Se fija si lo ingresado filtra bien y en caso que no aplica tira mensaje de error mediante una funcion------
+    let filtro = Autor.filter(Autor => Autor.nombre.includes(value))
+    if (filtro != "") {
+      clearList();
+      filtro.forEach(array => {
+        showAutores(array)
+      });
+    } else {
+      clearList();
+      noAutores();
+    }
   } else if(value.trim().length == 0){
-    showAutores(Autores)
+    clearList();
+    bringAutores();
   }else {
     clearList();
   }
@@ -61,4 +78,4 @@ const clearList = () => {
 };
 
 input.addEventListener("input", buscarAutor);
-showAutores(Autores);
+bringAutores();
