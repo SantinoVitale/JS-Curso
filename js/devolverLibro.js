@@ -140,42 +140,42 @@ inputLibroPrestado.addEventListener("click", (e) => {
 
 inputDevolver.addEventListener("click", (e) => {
     e.preventDefault();
-    swal({
-        title: "Bliblioteca Pipo",
-        text: "¿Está seguro de devolver este libro?",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-            setTimeout(() => {swal("El libro se a devuelto correctamente!", {
-            icon: "success",
-          })}, 500)
-          devolverLibro();
-        } else {
-          swal("Se canceló la operación");
+    Swal.fire({
+        title: '¿Está seguro de devolver este libro?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'SI',
+        denyButtonText: `NO`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            setTimeout(() => {
+                Swal.fire('Libro devuelto correctamente', '', 'success')
+              }, 500)
+              devolverLibro();
+        } else if (result.isDenied) {
+          Swal.fire('Se canceló la operación')
         }
-      });
+      })
 });
 
 inputMultar.addEventListener("click", (e) => {
     e.preventDefault();
-    swal({
-        title: "Bliblioteca Pipo",
-        text: "¿Está seguro de multar al usuario que posee este libro?",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-            setTimeout(() => {swal("El socio ha sido multado correctamente!", {
-            icon: "success",
-          })},500)
-          multarLibro();
-        } else {
-          swal("Se canceló la operación");
+    Swal.fire({
+        title: '¿Está seguro de multar al usuario que posee este libro?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'SI',
+        denyButtonText: `NO`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            setTimeout(() => {
+                Swal.fire('El socio ha sido multado correctamente!', '', 'success')
+              }, 500)
+              multarLibro();
+        } else if (result.isDenied) {
+          Swal.fire('Se canceló la operación')
         }
-      });
+      })
 })

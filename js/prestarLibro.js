@@ -78,21 +78,19 @@ bringSocios();
 
 inputPrestar.addEventListener("click", (e) => {
     e.preventDefault();
-    swal({
-        title: "Bliblioteca Pipo",
-        text: "¿Estás seguro de prestar este libro?",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-            setTimeout(() => {swal("El libro se a prestado correctamente!", {
-            icon: "success",
-          })}, 500)
-          prestarLibro();
-        } else {
-            swal("Se canceló la operación")
+    Swal.fire({
+        title: '¿Estás seguro de prestar este libro?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'SI',
+        denyButtonText: `NO`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            setTimeout(() => {Swal.fire('El libro se a prestado correctamente!', '', 'success')}, 500)
+            prestarLibro();
+        } else if (result.isDenied) {
+          Swal.fire('Se canceló la operación', '', 'error')
         }
-      });
+      })
 });
